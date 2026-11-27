@@ -216,14 +216,22 @@ SnackFlowCalc.prototype = {
         if (!field || this.isBlank(itemSysId)) {
             return ''
         }
-        var agg = new GlideAggregate(this.T_STOCK_TXN)
-        agg.addQuery('item_type', itemType)
-        agg.addQuery(field, itemSysId)
-        agg.addAggregate('MAX', 'transaction_date')
-        agg.query()
-        if (agg.next()) {
-            var value = agg.getAggregate('MAX', 'transaction_date')
-            return this.isBlank(value) ? '' : value
+        // GlideRecord iteration, not GlideAggregate MAX - see the note in
+        // recalcInvoicePayments. transaction_date is stored in internal
+        // 'YYYY-MM-DD HH:MM:SS' form, so a plain string comparison orders it chronologically.
+        var latest = ''
+        var txn = new GlideRecord(this.T_STOCK_TXN)
+        txn.addQuery('item_type', itemType)
+        txn.addQuery(field, itemSysId)
+        txn.query()
+        while (txn.next()) {
+            var candidate = txn.getValue('transaction_date')
+            if (!this.isBlank(candidate) && candidate > latest) {
+                latest = candidate
+            }
+        }
+        if (latest !== '') {
+            return latest
         }
         return ''
     },
@@ -377,14 +385,21 @@ SnackFlowCalc.prototype = {
             return
         }
 
+        // Full re-sum by GlideRecord ITERATION, deliberately not GlideAggregate.
+        // A GlideAggregate result is served from the aggregate cache when an identical query
+        // is repeated within one session, so recalculating after a SECOND payment in the same
+        // transaction returned the first payment's total and silently left the invoice
+        // under-paid. Reproduced on this instance outside ATF: two payment rows of 4000 and
+        // 6500 against one invoice were enumerated correctly by GlideRecord (2 rows, 10500)
+        // while GlideAggregate SUM still reported 4000.00.
         var paid = 0
-        var agg = new GlideAggregate(this.T_PAYMENT)
-        agg.addQuery('invoice', invoiceSysId)
-        agg.addAggregate('SUM', 'payment_amount')
-        agg.query()
-        if (agg.next()) {
-            paid = this.toNum(agg.getAggregate('SUM', 'payment_amount'))
+        var payments = new GlideRecord(this.T_PAYMENT)
+        payments.addQuery('invoice', invoiceSysId)
+        payments.query()
+        while (payments.next()) {
+            paid += this.toNum(payments.getValue('payment_amount'))
         }
+        paid = this.round2(paid)
 
         var total = this.toNum(invoice.getValue('total_invoice_amount'))
         var balance = this.round2(total - paid)
@@ -420,20 +435,23 @@ SnackFlowCalc.prototype = {
             return
         }
 
+        // GlideRecord iteration, not GlideAggregate - see the note in recalcInvoicePayments:
+        // a repeated identical aggregate query is cached per session and goes stale as soon as
+        // a sibling line is written in the same transaction.
         var total = 0
         var ordered = 0
         var dispatched = 0
-        var agg = new GlideAggregate(this.T_SALES_LINE)
-        agg.addQuery('sales_order', salesOrderSysId)
-        agg.addAggregate('SUM', 'line_amount')
-        agg.addAggregate('SUM', 'ordered_quantity')
-        agg.addAggregate('SUM', 'dispatched_quantity')
-        agg.query()
-        if (agg.next()) {
-            total = this.toNum(agg.getAggregate('SUM', 'line_amount'))
-            ordered = this.toNum(agg.getAggregate('SUM', 'ordered_quantity'))
-            dispatched = this.toNum(agg.getAggregate('SUM', 'dispatched_quantity'))
+        var lines = new GlideRecord(this.T_SALES_LINE)
+        lines.addQuery('sales_order', salesOrderSysId)
+        lines.query()
+        while (lines.next()) {
+            total += this.toNum(lines.getValue('line_amount'))
+            ordered += this.toNum(lines.getValue('ordered_quantity'))
+            dispatched += this.toNum(lines.getValue('dispatched_quantity'))
         }
+        total = this.round2(total)
+        ordered = this.round2(ordered)
+        dispatched = this.round2(dispatched)
 
         order.setValue('total_amount', this.round2(total))
 
@@ -461,14 +479,15 @@ SnackFlowCalc.prototype = {
             return
         }
 
+        // GlideRecord iteration, not GlideAggregate - see the note in recalcInvoicePayments.
         var total = 0
-        var agg = new GlideAggregate(this.T_PURCHASE_LINE)
-        agg.addQuery('purchase_order', purchaseOrderSysId)
-        agg.addAggregate('SUM', 'line_amount')
-        agg.query()
-        if (agg.next()) {
-            total = this.toNum(agg.getAggregate('SUM', 'line_amount'))
+        var lines = new GlideRecord(this.T_PURCHASE_LINE)
+        lines.addQuery('purchase_order', purchaseOrderSysId)
+        lines.query()
+        while (lines.next()) {
+            total += this.toNum(lines.getValue('line_amount'))
         }
+        total = this.round2(total)
 
         order.setValue('total_amount', this.round2(total))
         order.update()
@@ -481,14 +500,15 @@ SnackFlowCalc.prototype = {
         if (this.isBlank(productionOrderSysId)) {
             return 0
         }
-        var agg = new GlideAggregate(this.T_OUTPUT)
-        agg.addQuery('production_order', productionOrderSysId)
-        agg.addAggregate('SUM', 'good_quantity')
-        agg.query()
-        if (agg.next()) {
-            return this.toNum(agg.getAggregate('SUM', 'good_quantity'))
+        // GlideRecord iteration, not GlideAggregate - see the note in recalcInvoicePayments.
+        var good = 0
+        var output = new GlideRecord(this.T_OUTPUT)
+        output.addQuery('production_order', productionOrderSysId)
+        output.query()
+        while (output.next()) {
+            good += this.toNum(output.getValue('good_quantity'))
         }
-        return 0
+        return this.round2(good)
     },
 
     /**
