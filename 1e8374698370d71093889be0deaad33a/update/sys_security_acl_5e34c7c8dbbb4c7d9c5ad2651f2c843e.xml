@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>false</advanced>
+        <applies_to/>
+        <condition/>
+        <controlled_by_refs/>
+        <decision_type>allow</decision_type>
+        <description>Delete a payment. Existing write role is accountant; factory_admin is added as the application administrator so an admin can clean up payments the accountant created.</description>
+        <local_or_existing>Existing</local_or_existing>
+        <name>x_2298436_snackf_0_payment</name>
+        <operation display_value="delete">delete</operation>
+        <script/>
+        <security_attribute/>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 08:55:05</sys_created_on>
+        <sys_id>5e34c7c8dbbb4c7d9c5ad2651f2c843e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_2298436_snackf_0_payment</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_security_acl_5e34c7c8dbbb4c7d9c5ad2651f2c843e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 08:55:05</sys_updated_on>
+        <type display_value="record">record</type>
+    </sys_security_acl>
+</record_update>
