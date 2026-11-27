@@ -34,14 +34,19 @@
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:29:30</sys_created_on>
+        <sys_created_on>2026-11-27 10:42:04</sys_created_on>
         <sys_id>af3b727eb9ac4326aa25d7985bd0a7db</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:29:30</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:42:04</sys_updated_on>
         <value>
 // ATF injects assertEqual, steps, outputs, stepResult and an enclosing try block - bare body.
-var invoiceId = "{{step['8639018182c540ea9f6f4c326fb8694c'].record_id}}";
+// steps(SYS_ID) is ATF's injected accessor for an earlier step's outputs. GEM {{ step[...] }}
+// templates are NOT substituted in a script body, so the sys_id must be passed literally.
+var invoiceId = steps("8639018182c540ea9f6f4c326fb8694c").record_id;
+if (!invoiceId || ('' + invoiceId).length !== 32) {
+    throw new Error('unresolved step reference for invoiceId: ' + invoiceId);
+}
 var g = new GlideRecord('x_2298436_snackf_0_invoice');
 g.addQuery('sys_id', invoiceId);
 g.addQuery('balance_due', '&gt;', 0);
@@ -57,11 +62,11 @@ stepResult.setOutputMessage('fully settled invoice excluded from balance_due&gt;
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:29:30</sys_created_on>
+        <sys_created_on>2026-11-27 10:42:04</sys_created_on>
         <sys_id>f10374e598f447cc8750da146a221c67</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:29:30</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:42:04</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>

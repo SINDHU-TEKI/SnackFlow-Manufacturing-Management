@@ -34,11 +34,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:29:28</sys_created_on>
+        <sys_created_on>2026-11-27 10:42:02</sys_created_on>
         <sys_id>160ab49bdc2d4af38a7a979ba574ac08</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:29:28</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:42:02</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
@@ -48,14 +48,19 @@
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:29:28</sys_created_on>
+        <sys_created_on>2026-11-27 10:42:02</sys_created_on>
         <sys_id>c5f4c64b0c3b4d2bb3d8f9d5377ee2c7</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:29:28</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:42:02</sys_updated_on>
         <value>
 // ATF injects assertEqual, steps, outputs, stepResult and an enclosing try block - bare body.
-var productId = "{{step['c732959cfa35446aa33434725cc69f73'].record_id}}";
+// steps(SYS_ID) is ATF's injected accessor for an earlier step's outputs. GEM {{ step[...] }}
+// templates are NOT substituted in a script body, so the sys_id must be passed literally.
+var productId = steps("c732959cfa35446aa33434725cc69f73").record_id;
+if (!productId || ('' + productId).length !== 32) {
+    throw new Error('unresolved step reference for productId: ' + productId);
+}
 var calc = new x_2298436_snackf_0.SnackFlowCalc();
 
 // A downward correction is a deliberate manual decision (return / stock adjustment),
