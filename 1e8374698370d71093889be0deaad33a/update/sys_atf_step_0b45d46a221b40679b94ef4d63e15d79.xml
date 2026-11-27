@@ -23,7 +23,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-11-27 10:09:43</sys_updated_on>
         <table/>
-        <test display_value="">c351e52b4d234b00883fad456c6f6bd6</test>
+        <test display_value="SnackFlow: pending quantity, dispatch stock guard and downward corrections">c351e52b4d234b00883fad456c6f6bd6</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
@@ -34,11 +34,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:43</sys_created_on>
+        <sys_created_on>2026-11-27 10:29:28</sys_created_on>
         <sys_id>160ab49bdc2d4af38a7a979ba574ac08</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:43</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:29:28</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
@@ -48,30 +48,29 @@
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:43</sys_created_on>
+        <sys_created_on>2026-11-27 10:29:28</sys_created_on>
         <sys_id>c5f4c64b0c3b4d2bb3d8f9d5377ee2c7</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:43</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:29:28</sys_updated_on>
         <value>
-(function (outputs, steps, params, stepResult, assertEqual) {
-    var productId = '{{step['c732959cfa35446aa33434725cc69f73'].record_id}}';
-    var calc = new x_2298436_snackf_0.SnackFlowCalc();
+// ATF injects assertEqual, steps, outputs, stepResult and an enclosing try block - bare body.
+var productId = "{{step['c732959cfa35446aa33434725cc69f73'].record_id}}";
+var calc = new x_2298436_snackf_0.SnackFlowCalc();
 
-    // A downward correction is a deliberate manual decision (return / stock adjustment),
-    // so the rule must post nothing and leave the balance alone.
-    assertEqual({ name: 'balance unchanged by downward correction', shouldbe: 20, value: calc.ledgerBalance('finished_product', productId, null) });
+// A downward correction is a deliberate manual decision (return / stock adjustment),
+// so the rule must post nothing and leave the balance alone.
+assertEqual({ name: 'balance unchanged by downward correction', shouldbe: 20, value: calc.ledgerBalance('finished_product', productId, null) });
 
-    var cnt = 0;
-    var g = new GlideRecord('x_2298436_snackf_0_stock_transaction');
-    g.addQuery('product', productId);
-    g.addQuery('remarks', 'STARTSWITH', 'Auto-posted by SnackFlow Dispatch Stock Posting');
-    g.query();
-    while (g.next()) cnt++;
-    assertEqual({ name: 'no extra auto-posted row for the downward correction', shouldbe: 1, value: cnt });
+var cnt = 0;
+var g = new GlideRecord('x_2298436_snackf_0_stock_transaction');
+g.addQuery('product', productId);
+g.addQuery('remarks', 'STARTSWITH', 'Auto-posted by SnackFlow Dispatch Stock Posting');
+g.query();
+while (g.next()) cnt++;
+assertEqual({ name: 'no extra auto-posted row for the downward correction', shouldbe: 1, value: cnt });
 
-    stepResult.setOutputMessage('after downward correction: pending=80 balance=20 auto_posted_rows=' + cnt);
-})(outputs, steps, params, stepResult, assertEqual);
+stepResult.setOutputMessage('after downward correction: pending=80 balance=20 auto_posted_rows=' + cnt);
 </value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>

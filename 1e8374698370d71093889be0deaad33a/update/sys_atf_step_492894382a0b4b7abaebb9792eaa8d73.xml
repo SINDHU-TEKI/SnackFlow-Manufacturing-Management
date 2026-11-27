@@ -23,7 +23,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-11-27 10:09:44</sys_updated_on>
         <table/>
-        <test display_value="">c4b393dbf7c04e2ba12bc45bc81163fc</test>
+        <test display_value="SnackFlow: stock balance posting, adjustments and negative-stock prevention">c4b393dbf7c04e2ba12bc45bc81163fc</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
@@ -34,11 +34,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:44</sys_created_on>
+        <sys_created_on>2026-11-27 10:29:30</sys_created_on>
         <sys_id>365d6acbfcd940dba4c4ad9c0e367ea7</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:44</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:29:30</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
@@ -48,35 +48,34 @@
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:44</sys_created_on>
+        <sys_created_on>2026-11-27 10:29:30</sys_created_on>
         <sys_id>6e7ce4f8578d4d23bcd1cfafc6b5d00c</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:44</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:29:30</sys_updated_on>
         <value>
-(function (outputs, steps, params, stepResult, assertEqual) {
-    var productId = '{{step['c794da2ea5a641529d7bf7bce9844411'].record_id}}';
-    var calc = new x_2298436_snackf_0.SnackFlowCalc();
+// ATF injects assertEqual, steps, outputs, stepResult and an enclosing try block - bare body.
+var productId = "{{step['c794da2ea5a641529d7bf7bce9844411'].record_id}}";
+var calc = new x_2298436_snackf_0.SnackFlowCalc();
 
-    // The refused dispatch must have left no trace and no balance change.
-    assertEqual({ name: 'balance unchanged after refused dispatch', shouldbe: 75, value: calc.ledgerBalance('finished_product', productId, null) });
+// The refused dispatch must have left no trace and no balance change.
+assertEqual({ name: 'balance unchanged after refused dispatch', shouldbe: 75, value: calc.ledgerBalance('finished_product', productId, null) });
 
-    var rejected = new GlideAggregate('x_2298436_snackf_0_stock_transaction');
-    rejected.addQuery('product', productId);
-    rejected.addQuery('quantity', 1000);
-    rejected.addAggregate('COUNT');
-    rejected.query();
-    var cnt = rejected.next() ? parseInt(rejected.getAggregate('COUNT'), 10) : 0;
-    assertEqual({ name: 'no ledger row written for the refused dispatch', shouldbe: 0, value: cnt });
+var rejected = new GlideAggregate('x_2298436_snackf_0_stock_transaction');
+rejected.addQuery('product', productId);
+rejected.addQuery('quantity', 1000);
+rejected.addAggregate('COUNT');
+rejected.query();
+var cnt = rejected.next() ? parseInt(rejected.getAggregate('COUNT'), 10) : 0;
+assertEqual({ name: 'no ledger row written for the refused dispatch', shouldbe: 0, value: cnt });
 
-    var sb = new GlideRecord('x_2298436_snackf_0_stock_bal');
-    sb.addQuery('product', productId);
-    sb.query();
-    var stored = sb.next() ? parseFloat(sb.getValue('current_balance')) : -1;
-    assertEqual({ name: 'stock_bal still 75 after refusal', shouldbe: 75, value: stored });
+var sb = new GlideRecord('x_2298436_snackf_0_stock_bal');
+sb.addQuery('product', productId);
+sb.query();
+var stored = sb.next() ? parseFloat(sb.getValue('current_balance')) : -1;
+assertEqual({ name: 'stock_bal still 75 after refusal', shouldbe: 75, value: stored });
 
-    stepResult.setOutputMessage('after refusal: ledger=75 stock_bal=' + stored + ' rejected_rows=' + cnt);
-})(outputs, steps, params, stepResult, assertEqual);
+stepResult.setOutputMessage('after refusal: ledger=75 stock_bal=' + stored + ' rejected_rows=' + cnt);
 </value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>

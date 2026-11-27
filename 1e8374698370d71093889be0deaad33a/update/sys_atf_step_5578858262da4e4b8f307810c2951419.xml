@@ -23,7 +23,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-11-27 10:09:44</sys_updated_on>
         <table/>
-        <test display_value="">b5fa2d6f0fca4b539b76872b5d127780</test>
+        <test display_value="SnackFlow: GST calculation (intrastate CGST/SGST and interstate IGST)">b5fa2d6f0fca4b539b76872b5d127780</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
@@ -34,69 +34,68 @@
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:44</sys_created_on>
+        <sys_created_on>2026-11-27 10:29:30</sys_created_on>
         <sys_id>5ba5083dd0544ec59ff4b7a1ff885768</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:44</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:29:30</sys_updated_on>
         <value>
-(function (outputs, steps, params, stepResult, assertEqual) {
-    function load(id) {
-        var g = new GlideRecord('x_2298436_snackf_0_invoice');
-        if (!g.get(id)) throw new Error('invoice not found: ' + id);
-        return g;
-    }
-    function num(v) { return parseFloat(v) || 0; }
+// ATF injects assertEqual, steps, outputs, stepResult and an enclosing try block - bare body.
+function load(id) {
+    var g = new GlideRecord('x_2298436_snackf_0_invoice');
+    if (!g.get(id)) throw new Error('invoice not found: ' + id);
+    return g;
+}
+function num(v) { return parseFloat(v) || 0; }
 
-    var a = load('{{step['1d78acfcbc8b412e89a22896c8bb1c7c'].record_id}}');
-    var b = load('{{step['0a6d875ffb3d4902a32fab9d1f647c94'].record_id}}');
+var a = load("{{step['1d78acfcbc8b412e89a22896c8bb1c7c'].record_id}}");
+var b = load("{{step['0a6d875ffb3d4902a32fab9d1f647c94'].record_id}}");
 
-    // Derive the expected rate from the product master behind the order - never hardcoded.
-    function rateFor(invoiceGr) {
-        var soId = invoiceGr.getValue('sales_order');
-        var line = new GlideRecord('x_2298436_snackf_0_sales_order_detail');
-        line.addQuery('sales_order', soId);
-        line.query();
-        if (!line.next()) throw new Error('no sales order line for ' + soId);
-        var prod = new GlideRecord('x_2298436_snackf_0_product');
-        if (!prod.get(line.getValue('product'))) throw new Error('product missing');
-        return num(prod.getValue('gst_rate'));
-    }
+// Derive the expected rate from the product master behind the order - never hardcoded.
+function rateFor(invoiceGr) {
+    var soId = invoiceGr.getValue('sales_order');
+    var line = new GlideRecord('x_2298436_snackf_0_sales_order_detail');
+    line.addQuery('sales_order', soId);
+    line.query();
+    if (!line.next()) throw new Error('no sales order line for ' + soId);
+    var prod = new GlideRecord('x_2298436_snackf_0_product');
+    if (!prod.get(line.getValue('product'))) throw new Error('product missing');
+    return num(prod.getValue('gst_rate'));
+}
 
-    var rateA = rateFor(a);
-    var taxableA = num(a.getValue('taxable_amount'));
-    var expectedGstA = Math.round(taxableA * rateA / 100 * 100) / 100;
-    var actualGstA = num(a.getValue('cgst_amount')) + num(a.getValue('sgst_amount')) + num(a.getValue('igst_amount'));
-    assertEqual({ name: 'intrastate GST total = taxable * product rate', shouldbe: expectedGstA, value: actualGstA });
-    assertEqual({
-        name: 'intrastate invoice total = taxable + GST',
-        shouldbe: Math.round((taxableA + expectedGstA) * 100) / 100,
-        value: num(a.getValue('total_invoice_amount')),
-    });
-    assertEqual({ name: 'intrastate CGST equals SGST', shouldbe: num(a.getValue('cgst_amount')), value: num(a.getValue('sgst_amount')) });
+var rateA = rateFor(a);
+var taxableA = num(a.getValue('taxable_amount'));
+var expectedGstA = Math.round(taxableA * rateA / 100 * 100) / 100;
+var actualGstA = num(a.getValue('cgst_amount')) + num(a.getValue('sgst_amount')) + num(a.getValue('igst_amount'));
+assertEqual({ name: 'intrastate GST total = taxable * product rate', shouldbe: expectedGstA, value: actualGstA });
+assertEqual({
+    name: 'intrastate invoice total = taxable + GST',
+    shouldbe: Math.round((taxableA + expectedGstA) * 100) / 100,
+    value: num(a.getValue('total_invoice_amount')),
+});
+assertEqual({ name: 'intrastate CGST equals SGST', shouldbe: num(a.getValue('cgst_amount')), value: num(a.getValue('sgst_amount')) });
 
-    var rateB = rateFor(b);
-    var taxableB = num(b.getValue('taxable_amount'));
-    var expectedGstB = Math.round(taxableB * rateB / 100 * 100) / 100;
-    var actualGstB = num(b.getValue('cgst_amount')) + num(b.getValue('sgst_amount')) + num(b.getValue('igst_amount'));
-    assertEqual({ name: 'interstate GST total = taxable * product rate', shouldbe: expectedGstB, value: actualGstB });
-    assertEqual({
-        name: 'interstate invoice total = taxable + GST',
-        shouldbe: Math.round((taxableB + expectedGstB) * 100) / 100,
-        value: num(b.getValue('total_invoice_amount')),
-    });
-    assertEqual({ name: 'interstate GST carried wholly by IGST', shouldbe: expectedGstB, value: num(b.getValue('igst_amount')) });
+var rateB = rateFor(b);
+var taxableB = num(b.getValue('taxable_amount'));
+var expectedGstB = Math.round(taxableB * rateB / 100 * 100) / 100;
+var actualGstB = num(b.getValue('cgst_amount')) + num(b.getValue('sgst_amount')) + num(b.getValue('igst_amount'));
+assertEqual({ name: 'interstate GST total = taxable * product rate', shouldbe: expectedGstB, value: actualGstB });
+assertEqual({
+    name: 'interstate invoice total = taxable + GST',
+    shouldbe: Math.round((taxableB + expectedGstB) * 100) / 100,
+    value: num(b.getValue('total_invoice_amount')),
+});
+assertEqual({ name: 'interstate GST carried wholly by IGST', shouldbe: expectedGstB, value: num(b.getValue('igst_amount')) });
 
-    // No GSTIN may be invented: both benchmark customers have a blank gstin, so the
-    // rule must leave invoice.customer_gstin blank rather than fabricating one.
-    assertEqual({ name: 'intrastate customer_gstin left blank', shouldbe: '', value: a.getValue('customer_gstin') || '' });
-    assertEqual({ name: 'interstate customer_gstin left blank', shouldbe: '', value: b.getValue('customer_gstin') || '' });
+// No GSTIN may be invented: both benchmark customers have a blank gstin, so the
+// rule must leave invoice.customer_gstin blank rather than fabricating one.
+assertEqual({ name: 'intrastate customer_gstin left blank', shouldbe: '', value: a.getValue('customer_gstin') || '' });
+assertEqual({ name: 'interstate customer_gstin left blank', shouldbe: '', value: b.getValue('customer_gstin') || '' });
 
-    stepResult.setOutputMessage(
-        'rate=' + rateA + '% | intrastate GST=' + actualGstA + ' total=' + a.getValue('total_invoice_amount') +
-        ' | interstate IGST=' + b.getValue('igst_amount') + ' total=' + b.getValue('total_invoice_amount')
-    );
-})(outputs, steps, params, stepResult, assertEqual);
+stepResult.setOutputMessage(
+    'rate=' + rateA + '% | intrastate GST=' + actualGstA + ' total=' + a.getValue('total_invoice_amount') +
+    ' | interstate IGST=' + b.getValue('igst_amount') + ' total=' + b.getValue('total_invoice_amount')
+);
 </value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>
@@ -106,11 +105,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:44</sys_created_on>
+        <sys_created_on>2026-11-27 10:29:30</sys_created_on>
         <sys_id>6fe2cf6ff5c34a769d2970354b982d89</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:44</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:29:30</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>

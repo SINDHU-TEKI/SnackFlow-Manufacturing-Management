@@ -23,7 +23,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
         <table/>
-        <test display_value="">39ad052e4d404c26aff3a4d67c849897</test>
+        <test display_value="SnackFlow: production cost, cost per packet and packaging completeness">39ad052e4d404c26aff3a4d67c849897</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
@@ -34,82 +34,81 @@
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_created_on>2026-11-27 10:29:32</sys_created_on>
         <sys_id>2424f23616644e4b8faf1bc97da0b2aa</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:29:32</sys_updated_on>
         <value>
-(function (outputs, steps, params, stepResult, assertEqual) {
-    var orderId = '{{step['a3f959fa54d44f1bb9df2327ee4eb3bb'].record_id}}';
-    var costId = '{{step['9bd8d08fa2e646edaee245e10e7f8692'].record_id}}';
-    function num(v) { return parseFloat(v) || 0; }
+// ATF injects assertEqual, steps, outputs, stepResult and an enclosing try block - bare body.
+var orderId = "{{step['a3f959fa54d44f1bb9df2327ee4eb3bb'].record_id}}";
+var costId = "{{step['9bd8d08fa2e646edaee245e10e7f8692'].record_id}}";
+function num(v) { return parseFloat(v) || 0; }
 
-    var pc = new GlideRecord('x_2298436_snackf_0_prod_cost');
-    if (!pc.get(costId)) throw new Error('cost sheet not found');
+var pc = new GlideRecord('x_2298436_snackf_0_prod_cost');
+if (!pc.get(costId)) throw new Error('cost sheet not found');
 
-    // Rebuild material cost from the consumption rows and the live unit costs,
-    // so the expected figure comes from data, not from a literal in the test.
-    var expectedMaterial = 0, packagingLines = 0, blankCostLines = 0;
-    var mc = new GlideRecord('x_2298436_snackf_0_material_consumption');
-    mc.addQuery('production_order', orderId);
-    mc.query();
-    while (mc.next()) {
-        if (mc.getValue('item_type') === 'raw_material') {
-            var rm = new GlideRecord('x_2298436_snackf_0_raw_material');
-            if (rm.get(mc.getValue('raw_material'))) {
-                expectedMaterial += num(mc.getValue('actual_quantity')) * num(rm.getValue('unit_cost'));
-            }
-        } else if (mc.getValue('item_type') === 'packaging_material') {
-            packagingLines++;
-            var pm = new GlideRecord('x_2298436_snackf_0_packaging_material');
-            if (pm.get(mc.getValue('packaging_material'))) {
-                var uc = pm.getValue('unit_cost');
-                if (uc === null || uc === '' || uc === undefined) blankCostLines++;
-            }
+// Rebuild material cost from the consumption rows and the live unit costs,
+// so the expected figure comes from data, not from a literal in the test.
+var expectedMaterial = 0, packagingLines = 0, blankCostLines = 0;
+var mc = new GlideRecord('x_2298436_snackf_0_material_consumption');
+mc.addQuery('production_order', orderId);
+mc.query();
+while (mc.next()) {
+    if (mc.getValue('item_type') === 'raw_material') {
+        var rm = new GlideRecord('x_2298436_snackf_0_raw_material');
+        if (rm.get(mc.getValue('raw_material'))) {
+            expectedMaterial += num(mc.getValue('actual_quantity')) * num(rm.getValue('unit_cost'));
+        }
+    } else if (mc.getValue('item_type') === 'packaging_material') {
+        packagingLines++;
+        var pm = new GlideRecord('x_2298436_snackf_0_packaging_material');
+        if (pm.get(mc.getValue('packaging_material'))) {
+            var uc = pm.getValue('unit_cost');
+            if (uc === null || uc === '' || uc === undefined) blankCostLines++;
         }
     }
-    expectedMaterial = Math.round(expectedMaterial * 100) / 100;
-    assertEqual({ name: 'material cost rebuilt from consumption x live unit costs', shouldbe: expectedMaterial, value: num(pc.getValue('material_cost')) });
+}
+expectedMaterial = Math.round(expectedMaterial * 100) / 100;
+assertEqual({ name: 'material cost rebuilt from consumption x live unit costs', shouldbe: expectedMaterial, value: num(pc.getValue('material_cost')) });
 
-    // Packaging must be excluded, not guessed, while any unit cost is blank.
-    assertEqual({ name: 'at least one packaging line has a blank unit cost', shouldbe: true, value: blankCostLines &gt; 0 });
-    assertEqual({ name: 'packaging cost excluded (0) while unit cost blank', shouldbe: 0, value: num(pc.getValue('packaging_cost')) });
-    assertEqual({ name: 'packaging_cost_complete is false', shouldbe: 'false', value: '' + pc.getValue('packaging_cost_complete') });
+// Packaging must be excluded, not guessed, while any unit cost is blank.
+assertEqual({ name: 'at least one packaging line has a blank unit cost', shouldbe: true, value: blankCostLines &gt; 0 });
+assertEqual({ name: 'packaging cost excluded (0) while unit cost blank', shouldbe: 0, value: num(pc.getValue('packaging_cost')) });
+assertEqual({ name: 'packaging_cost_complete is false', shouldbe: 'false', value: '' + pc.getValue('packaging_cost_complete') });
 
-    // Total and per-packet recomputed from the sheet's own parts.
-    var expectedTotal = Math.round((num(pc.getValue('material_cost')) + num(pc.getValue('packaging_cost')) +
-        num(pc.getValue('labour_cost')) + num(pc.getValue('overhead_cost'))) * 100) / 100;
-    assertEqual({ name: 'total = material + packaging + labour + overhead', shouldbe: expectedTotal, value: num(pc.getValue('total_cost')) });
+// Total and per-packet recomputed from the sheet's own parts.
+var expectedTotal = Math.round((num(pc.getValue('material_cost')) + num(pc.getValue('packaging_cost')) +
+    num(pc.getValue('labour_cost')) + num(pc.getValue('overhead_cost'))) * 100) / 100;
+assertEqual({ name: 'total = material + packaging + labour + overhead', shouldbe: expectedTotal, value: num(pc.getValue('total_cost')) });
 
-    var good = num(pc.getValue('good_quantity'));
-    assertEqual({ name: 'good quantity rolled up from the output record', shouldbe: 95, value: good });
+var good = num(pc.getValue('good_quantity'));
+assertEqual({ name: 'good quantity rolled up from the output record', shouldbe: 95, value: good });
 
-    // cost_per_packet is a 2-decimal column, so compare within half a cent.
-    var expectedPerPacket = expectedTotal / good;
-    var actualPerPacket = num(pc.getValue('cost_per_packet'));
-    assertEqual({
-        name: 'cost per packet = total / good (within column precision)',
-        shouldbe: true,
-        value: Math.abs(actualPerPacket - expectedPerPacket) &lt; 0.005,
-    });
+// cost_per_packet is a 2-decimal column, so compare within half a cent.
+var expectedPerPacket = expectedTotal / good;
+var actualPerPacket = num(pc.getValue('cost_per_packet'));
+assertEqual({
+    name: 'cost per packet = total / good (within column precision)',
+    shouldbe: true,
+    value: Math.abs(actualPerPacket - expectedPerPacket) &lt; 0.005,
+});
 
-    // Consumption must never post to the stock ledger.
-    var led = new GlideAggregate('x_2298436_snackf_0_stock_transaction');
-    led.addQuery('production_order', orderId);
-    led.addAggregate('COUNT');
-    led.query();
-    var ledRows = led.next() ? parseInt(led.getAggregate('COUNT'), 10) : 0;
-    assertEqual({ name: 'consumption posted no stock ledger rows', shouldbe: 0, value: ledRows });
+// Consumption must never post to the stock ledger.
+var led = new GlideAggregate('x_2298436_snackf_0_stock_transaction');
+led.addQuery('production_order', orderId);
+led.addAggregate('COUNT');
+led.query();
+var ledRows = led.next() ? parseInt(led.getAggregate('COUNT'), 10) : 0;
+assertEqual({ name: 'consumption posted no stock ledger rows', shouldbe: 0, value: ledRows });
 
-    stepResult.setOutputMessage(
-        'material=' + pc.getValue('material_cost') + ' packaging=' + pc.getValue('packaging_cost') +
-        ' total=' + pc.getValue('total_cost') + ' good=' + good +
-        ' per_packet=' + actualPerPacket + ' (exact ' + expectedPerPacket.toFixed(4) + ')' +
-        ' packaging_complete=' + pc.getValue('packaging_cost_complete') +
-        ' packaging_lines=' + packagingLines + ' blank_cost_lines=' + blankCostLines
-    );
-})(outputs, steps, params, stepResult, assertEqual);
+stepResult.setOutputMessage(
+    'material=' + pc.getValue('material_cost') + ' packaging=' + pc.getValue('packaging_cost') +
+    ' total=' + pc.getValue('total_cost') + ' good=' + good +
+    ' per_packet=' + actualPerPacket + ' (exact ' + expectedPerPacket.toFixed(4) + ')' +
+    ' packaging_complete=' + pc.getValue('packaging_cost_complete') +
+    ' packaging_lines=' + packagingLines + ' blank_cost_lines=' + blankCostLines
+);
 </value>
         <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
     </sys_variable_value>
@@ -119,11 +118,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_created_on>2026-11-27 10:29:32</sys_created_on>
         <sys_id>642ab169035a4114b0c5833abe469ee3</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <sys_updated_on>2026-11-27 10:29:32</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>
