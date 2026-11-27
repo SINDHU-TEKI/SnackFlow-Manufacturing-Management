@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_2298436_snackf_0.SnackFlowCalc</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Shared SnackFlow Stage 2 calculation engine. Every rollup is a full recompute from source rows so repeated updates converge (no duplicate stock postings, no double-counted payments).</description>
+        <mobile_callable>false</mobile_callable>
+        <name>SnackFlowCalc</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[/**
+ * SnackFlowCalc - shared Stage 2 calculation engine for SnackFlow.
+ *
+ * DESIGN RULE (non-negotiable): every rollup / aggregate in this class is a
+ * FULL RECOMPUTE from the source rows. Nothing is ever incremented or
+ * decremented from a previously stored value. Running the same calculation
+ * twice therefore always converges on the same answer, which is what guards
+ * against duplicate stock postings and double-counted payment totals.
+ *
+ * NOTE: this file is a Script Include (Class.create) - Glide APIs such as
+ * GlideRecord, GlideAggregate and gs are auto-available and must NOT be imported.
+ */
+var SnackFlowCalc = Class.create()
+
+SnackFlowCalc.prototype = {
+    initialize: function () {
+        this.PREFIX = 'x_2298436_snackf_0_'
+
+        this.T_STOCK_TXN = 'x_2298436_snackf_0_stock_transaction'
+        this.T_STOCK_BAL = 'x_2298436_snackf_0_stock_bal'
+        this.T_RAW = 'x_2298436_snackf_0_raw_material'
+        this.T_PACK = 'x_2298436_snackf_0_packaging_material'
+        this.T_PRODUCT = 'x_2298436_snackf_0_product'
+        this.T_CUSTOMER = 'x_2298436_snackf_0_customer'
+        this.T_INVOICE = 'x_2298436_snackf_0_invoice'
+        this.T_PAYMENT = 'x_2298436_snackf_0_payment'
+        this.T_SALES_ORDER = 'x_2298436_snackf_0_sales_order'
+        this.T_SALES_LINE = 'x_2298436_snackf_0_sales_order_detail'
+        this.T_PURCHASE_ORDER = 'x_2298436_snackf_0_purchase_order'
+        this.T_PURCHASE_LINE = 'x_2298436_snackf_0_purchase_detail'
+        this.T_CONSUMPTION = 'x_2298436_snackf_0_material_consumption'
+        this.T_OUTPUT = 'x_2298436_snackf_0_output_quality_record'
+        this.T_PRODUCTION_ORDER = 'x_2298436_snackf_0_production_order'
+        this.T_PROD_COST = 'x_2298436_snackf_0_prod_cost'
+
+        /**
+         * Maps an item_type choice value to the reference field that holds the
+         * item on stock_transaction / stock_bal.
+         */
+        this.ITEM_FIELD = {
+            raw_material: 'raw_material',
+            packaging_material: 'packaging_material',
+            finished_product: 'product',
+        }
+
+        /**
+         * Ledger direction per transaction_type. All stored quantities are
+         * positive magnitudes (enforced by the existing "Stock Validation"
+         * rule), so direction comes exclusively from the transaction type.
+         */
+        this.TXN_SIGN = {
+            opening_stock: 1,
+            purchase: 1,
+            production_receipt: 1,
+            'return': 1,
+            stock_adjustment: 1,
+            production_issue: -1,
+            dispatch: -1,
+        }
+    },
+
+    // ---------------------------------------------------------------- helpers
+
+    toNum: function (v) {
+        if (v === null || v === undefined || v === '') {
+            return 0
+        }
+        var n = parseFloat(v)
+        return isNaN(n) ? 0 : n
+    },
+
+    round2: function (n) {
+        return Math.round(this.toNum(n) * 100) / 100
+    },
+
+    isBlank: function (v) {
+        return v === null || v === undefined || v === ''
+    },
+
+    signFor: function (txnType) {
+        if (this.isBlank(txnType)) {
+            return 0
+        }
+        var sign = this.TXN_SIGN['' + txnType]
+        return sign === undefined ? 0 : sign
+    },
+
+    // ------------------------------------------------------------ stock ledger
+
+    /**
+     * Signed ledger balance for one item, computed from the stock_transaction
+     * rows only.
+     *
+     * ** CRITICAL: this method must NEVER read raw_material.opening_stock or
+     * packaging_material.opening_stock. The ledger's own `opening_stock`
+     * transaction rows are the single source of truth; the master-data
+     * opening_stock columns are seed data only. Reading both would
+     * double-count. **
+     *
+     * @param itemType       raw_material | packaging_material | finished_product
+     * @param itemSysId      sys_id of the master-data item
+     * @param excludeSysId   optional stock_transaction sys_id to skip
+     */
+    ledgerBalance: function (itemType, itemSysId, excludeSysId) {
+        var field = this.ITEM_FIELD['' + itemType]
+        if (!field || this.isBlank(itemSysId)) {
+            return 0
+        }
+
+        var total = 0
+        var txn = new GlideRecord(this.T_STOCK_TXN)
+        txn.addQuery('item_type', itemType)
+        txn.addQuery(field, itemSysId)
+        if (!this.isBlank(excludeSysId)) {
+            txn.addQuery('sys_id', '!=', excludeSysId)
+        }
+        txn.query()
+        while (txn.next()) {
+            total += this.signFor(txn.getValue('transaction_type')) * this.toNum(txn.getValue('quantity'))
+        }
+        return total
+    },
+
+    /**
+     * Upserts the stock_bal row for one item from a FULL ledger recompute.
+     * Never creates a duplicate balance row and never increments a stored value.
+     */
+    recalcStockBalance: function (itemType, itemSysId) {
+        var field = this.ITEM_FIELD['' + itemType]
+        if (!field || this.isBlank(itemSysId)) {
+            return
+        }
+
+        var balance = this.ledgerBalance(itemType, itemSysId, null)
+        var meta = this.itemMeta(itemType, itemSysId)
+        var lastTxn = this.lastTxnDate(itemType, itemSysId)
+        var belowReorder = meta.reorder_level > 0 && balance < meta.reorder_level
+
+        var existing = new GlideRecord(this.T_STOCK_BAL)
+        existing.addQuery('item_type', itemType)
+        existing.addQuery(field, itemSysId)
+        existing.setLimit(1)
+        existing.query()
+
+        if (existing.next()) {
+            this.writeStockBalance(existing, balance, meta, lastTxn, belowReorder)
+            existing.update()
+            return
+        }
+
+        var fresh = new GlideRecord(this.T_STOCK_BAL)
+        fresh.initialize()
+        fresh.setValue('item_type', itemType)
+        fresh.setValue(field, itemSysId)
+        this.writeStockBalance(fresh, balance, meta, lastTxn, belowReorder)
+        fresh.insert()
+    },
+
+    writeStockBalance: function (gr, balance, meta, lastTxn, belowReorder) {
+        gr.setValue('item_name', meta.item_name)
+        gr.setValue('unit', meta.unit)
+        gr.setValue('current_balance', this.round2(balance))
+        gr.setValue('reorder_level', this.round2(meta.reorder_level))
+        gr.setValue('below_reorder', belowReorder ? true : false)
+        gr.setValue('last_txn_date', this.isBlank(lastTxn) ? '' : lastTxn)
+    },
+
+    /** Resolves item_name / unit / reorder_level from the master record. */
+    itemMeta: function (itemType, itemSysId) {
+        var meta = { item_name: '', unit: '', reorder_level: 0 }
+        if (this.isBlank(itemSysId)) {
+            return meta
+        }
+
+        if (itemType === 'raw_material') {
+            var raw = new GlideRecord(this.T_RAW)
+            if (raw.get(itemSysId)) {
+                meta.item_name = raw.getValue('material_name') || ''
+                meta.unit = raw.getValue('unit') || ''
+                meta.reorder_level = this.toNum(raw.getValue('reorder_level'))
+            }
+        } else if (itemType === 'packaging_material') {
+            var pack = new GlideRecord(this.T_PACK)
+            if (pack.get(itemSysId)) {
+                meta.item_name = pack.getValue('packaging_name') || ''
+                meta.unit = pack.getValue('unit') || ''
+                meta.reorder_level = this.toNum(pack.getValue('reorder_level'))
+            }
+        } else if (itemType === 'finished_product') {
+            var product = new GlideRecord(this.T_PRODUCT)
+            if (product.get(itemSysId)) {
+                meta.item_name = product.getValue('product_name') || ''
+                // Finished goods are always counted in packets and the product
+                // table carries no reorder level.
+                meta.unit = 'packet'
+                meta.reorder_level = 0
+            }
+        }
+        return meta
+    },
+
+    /** MAX(transaction_date) across the item's ledger rows. */
+    lastTxnDate: function (itemType, itemSysId) {
+        var field = this.ITEM_FIELD['' + itemType]
+        if (!field || this.isBlank(itemSysId)) {
+            return ''
+        }
+        var agg = new GlideAggregate(this.T_STOCK_TXN)
+        agg.addQuery('item_type', itemType)
+        agg.addQuery(field, itemSysId)
+        agg.addAggregate('MAX', 'transaction_date')
+        agg.query()
+        if (agg.next()) {
+            var value = agg.getAggregate('MAX', 'transaction_date')
+            return this.isBlank(value) ? '' : value
+        }
+        return ''
+    },
+
+    // -------------------------------------------------------------------- GST
+
+    /**
+     * Distinct product GST rate behind an invoice.
+     *
+     * @param invoiceSysId      invoice sys_id (used to resolve sales_order)
+     * @param salesOrderSysId   optional pre-resolved sales_order sys_id. Needed
+     *                          on before-insert, where the invoice row does not
+     *                          exist in the database yet.
+     * @return {found: boolean, multiple: boolean, rate: number}
+     */
+    invoiceGstRate: function (invoiceSysId, salesOrderSysId) {
+        var result = { found: false, multiple: false, rate: 0 }
+
+        var orderId = salesOrderSysId
+        if (this.isBlank(orderId)) {
+            if (this.isBlank(invoiceSysId)) {
+                return result
+            }
+            var invoice = new GlideRecord(this.T_INVOICE)
+            if (!invoice.get(invoiceSysId)) {
+                return result
+            }
+            orderId = invoice.getValue('sales_order')
+        }
+        if (this.isBlank(orderId)) {
+            return result
+        }
+
+        var rates = []
+        var line = new GlideRecord(this.T_SALES_LINE)
+        line.addQuery('sales_order', orderId)
+        line.query()
+        while (line.next()) {
+            var productId = line.getValue('product')
+            if (this.isBlank(productId)) {
+                continue
+            }
+            var product = new GlideRecord(this.T_PRODUCT)
+            if (!product.get(productId)) {
+                continue
+            }
+            var rate = this.toNum(product.getValue('gst_rate'))
+            if (rates.indexOf(rate) === -1) {
+                rates.push(rate)
+            }
+        }
+
+        if (rates.length === 0) {
+            return result
+        }
+        if (rates.length > 1) {
+            result.found = true
+            result.multiple = true
+            return result
+        }
+        result.found = true
+        result.multiple = false
+        result.rate = rates[0]
+        return result
+    },
+
+    /**
+     * Populates place_of_supply / gst_type / customer_gstin and the GST amounts
+     * on an invoice. Called from a BEFORE rule, so it mutates `current` and
+     * never calls update().
+     */
+    applyInvoiceGst: function (current) {
+        var customerId = current.getValue('customer')
+        var customerState = ''
+        var customerGstin = ''
+        if (!this.isBlank(customerId)) {
+            var customer = new GlideRecord(this.T_CUSTOMER)
+            if (customer.get(customerId)) {
+                customerState = customer.getValue('state') || ''
+                customerGstin = customer.getValue('gstin') || ''
+            }
+        }
+
+        // Default the place of supply from the customer's state only when the
+        // invoice does not already carry one.
+        if (this.isBlank(current.getValue('place_of_supply')) && !this.isBlank(customerState)) {
+            current.setValue('place_of_supply', customerState)
+        }
+
+        // gst_type is only derivable when both sides of the comparison exist.
+        // With no customer we leave whatever the user chose untouched.
+        var placeOfSupply = current.getValue('place_of_supply')
+        if (!this.isBlank(placeOfSupply) && !this.isBlank(customerState)) {
+            current.setValue('gst_type', placeOfSupply === customerState ? 'cgst_sgst' : 'igst')
+        }
+
+        // ** NEVER fabricate a GSTIN. The customer's GSTIN is copied only when
+        // it is actually populated; an empty customer GSTIN leaves
+        // invoice.customer_gstin exactly as it is. **
+        if (!this.isBlank(customerGstin)) {
+            current.setValue('customer_gstin', customerGstin)
+        }
+
+        var info = this.invoiceGstRate(current.getUniqueValue(), current.getValue('sales_order'))
+
+        if (!info.found) {
+            // No linked order / no product rate: keep any hand-entered GST
+            // amounts instead of zeroing them out.
+            gs.info(
+                'SnackFlow: no product GST rate could be resolved for invoice ' +
+                    (current.getValue('number') || current.getUniqueValue()) +
+                    '; GST amounts left unchanged.',
+            )
+            return
+        }
+
+        if (info.multiple) {
+            gs.addErrorMessage('Invoice spans products with different GST rates; GST not auto-calculated.')
+            return
+        }
+
+        var tax = this.round2(this.toNum(current.getValue('taxable_amount')) * info.rate / 100)
+
+        if (current.getValue('gst_type') === 'igst') {
+            current.setValue('igst_amount', tax)
+            current.setValue('cgst_amount', 0)
+            current.setValue('sgst_amount', 0)
+        } else {
+            var half = this.round2(tax / 2)
+            current.setValue('cgst_amount', half)
+            current.setValue('sgst_amount', half)
+            current.setValue('igst_amount', 0)
+        }
+
+        // total_invoice_amount is deliberately NOT set here. The pre-existing
+        // "Invoice Total Calc" rule (order 100) runs after this one and owns it.
+    },
+
+    // --------------------------------------------------------------- payments
+
+    /**
+     * FULL re-sum of every payment against one invoice. Idempotent: repeated
+     * runs converge, so a duplicate rule firing cannot double-count a payment.
+     */
+    recalcInvoicePayments: function (invoiceSysId) {
+        if (this.isBlank(invoiceSysId)) {
+            return
+        }
+        var invoice = new GlideRecord(this.T_INVOICE)
+        if (!invoice.get(invoiceSysId)) {
+            return
+        }
+
+        var paid = 0
+        var agg = new GlideAggregate(this.T_PAYMENT)
+        agg.addQuery('invoice', invoiceSysId)
+        agg.addAggregate('SUM', 'payment_amount')
+        agg.query()
+        if (agg.next()) {
+            paid = this.toNum(agg.getAggregate('SUM', 'payment_amount'))
+        }
+
+        var total = this.toNum(invoice.getValue('total_invoice_amount'))
+        var balance = this.round2(total - paid)
+
+        invoice.setValue('amount_paid', this.round2(paid))
+        invoice.setValue('balance_due', balance)
+
+        // draft and cancelled are manual, terminal-ish states: payments must
+        // never drag an invoice out of them.
+        var status = invoice.getValue('invoice_status')
+        if (status !== 'draft' && status !== 'cancelled') {
+            if (paid <= 0.005) {
+                invoice.setValue('invoice_status', 'issued')
+            } else if (balance > 0.005) {
+                invoice.setValue('invoice_status', 'partially_paid')
+            } else {
+                invoice.setValue('invoice_status', 'paid')
+            }
+        }
+
+        invoice.update()
+    },
+
+    // ----------------------------------------------------------------- orders
+
+    /** FULL re-sum of the sales order lines (amount + dispatch progress). */
+    recalcSalesOrder: function (salesOrderSysId) {
+        if (this.isBlank(salesOrderSysId)) {
+            return
+        }
+        var order = new GlideRecord(this.T_SALES_ORDER)
+        if (!order.get(salesOrderSysId)) {
+            return
+        }
+
+        var total = 0
+        var ordered = 0
+        var dispatched = 0
+        var agg = new GlideAggregate(this.T_SALES_LINE)
+        agg.addQuery('sales_order', salesOrderSysId)
+        agg.addAggregate('SUM', 'line_amount')
+        agg.addAggregate('SUM', 'ordered_quantity')
+        agg.addAggregate('SUM', 'dispatched_quantity')
+        agg.query()
+        if (agg.next()) {
+            total = this.toNum(agg.getAggregate('SUM', 'line_amount'))
+            ordered = this.toNum(agg.getAggregate('SUM', 'ordered_quantity'))
+            dispatched = this.toNum(agg.getAggregate('SUM', 'dispatched_quantity'))
+        }
+
+        order.setValue('total_amount', this.round2(total))
+
+        var status = order.getValue('status')
+        if (status !== 'draft' && status !== 'cancelled') {
+            if (dispatched <= 0) {
+                order.setValue('status', 'confirmed')
+            } else if (dispatched < ordered) {
+                order.setValue('status', 'partially_dispatched')
+            } else {
+                order.setValue('status', 'dispatched')
+            }
+        }
+
+        order.update()
+    },
+
+    /** FULL re-sum of purchase lines. purchase_order.status is never touched. */
+    recalcPurchaseOrder: function (purchaseOrderSysId) {
+        if (this.isBlank(purchaseOrderSysId)) {
+            return
+        }
+        var order = new GlideRecord(this.T_PURCHASE_ORDER)
+        if (!order.get(purchaseOrderSysId)) {
+            return
+        }
+
+        var total = 0
+        var agg = new GlideAggregate(this.T_PURCHASE_LINE)
+        agg.addQuery('purchase_order', purchaseOrderSysId)
+        agg.addAggregate('SUM', 'line_amount')
+        agg.query()
+        if (agg.next()) {
+            total = this.toNum(agg.getAggregate('SUM', 'line_amount'))
+        }
+
+        order.setValue('total_amount', this.round2(total))
+        order.update()
+    },
+
+    // ------------------------------------------------------------- production
+
+    /** SUM(good_quantity) of the output/quality rows for a production order. */
+    goodQuantityForOrder: function (productionOrderSysId) {
+        if (this.isBlank(productionOrderSysId)) {
+            return 0
+        }
+        var agg = new GlideAggregate(this.T_OUTPUT)
+        agg.addQuery('production_order', productionOrderSysId)
+        agg.addAggregate('SUM', 'good_quantity')
+        agg.query()
+        if (agg.next()) {
+            return this.toNum(agg.getAggregate('SUM', 'good_quantity'))
+        }
+        return 0
+    },
+
+    /**
+     * Recomputes a prod_cost record from the material_consumption and
+     * output_quality_record rows of its production order. Called from a BEFORE
+     * rule, so it mutates the passed GlideRecord and never calls update().
+     *
+     * labour_cost and overhead_cost are USER-ENTERED: they are only read here,
+     * never defaulted, guessed or overwritten.
+     */
+    recalcProductionCost: function (prodCostGr) {
+        var productionOrderId = prodCostGr.getValue('production_order')
+        if (this.isBlank(productionOrderId)) {
+            return
+        }
+
+        var materialCost = 0
+        var packagingCost = 0
+        var missingPackagingCost = false
+
+        var consumption = new GlideRecord(this.T_CONSUMPTION)
+        consumption.addQuery('production_order', productionOrderId)
+        consumption.query()
+        while (consumption.next()) {
+            var quantity = this.toNum(consumption.getValue('actual_quantity'))
+            var itemType = consumption.getValue('item_type')
+
+            if (itemType === 'raw_material') {
+                var rawId = consumption.getValue('raw_material')
+                if (this.isBlank(rawId)) {
+                    continue
+                }
+                var raw = new GlideRecord(this.T_RAW)
+                if (raw.get(rawId)) {
+                    materialCost += quantity * this.toNum(raw.getValue('unit_cost'))
+                }
+            } else if (itemType === 'packaging_material') {
+                var packId = consumption.getValue('packaging_material')
+                if (this.isBlank(packId)) {
+                    continue
+                }
+                var pack = new GlideRecord(this.T_PACK)
+                if (!pack.get(packId)) {
+                    // Cost unknown - flag the cost sheet as incomplete.
+                    missingPackagingCost = true
+                    continue
+                }
+                var unitCost = pack.getValue('unit_cost')
+                if (this.isBlank(unitCost)) {
+                    // Missing packaging unit cost contributes 0 and marks the
+                    // cost sheet incomplete rather than silently understating.
+                    missingPackagingCost = true
+                } else {
+                    packagingCost += quantity * this.toNum(unitCost)
+                }
+            }
+        }
+
+        var good = this.goodQuantityForOrder(productionOrderId)
+
+        prodCostGr.setValue('material_cost', this.round2(materialCost))
+        prodCostGr.setValue('packaging_cost', this.round2(packagingCost))
+        prodCostGr.setValue('good_quantity', good)
+        prodCostGr.setValue('packaging_cost_complete', missingPackagingCost ? false : true)
+
+        var labour = this.toNum(prodCostGr.getValue('labour_cost'))
+        var overhead = this.toNum(prodCostGr.getValue('overhead_cost'))
+        var totalCost = this.round2(materialCost + packagingCost + labour + overhead)
+
+        prodCostGr.setValue('total_cost', totalCost)
+        prodCostGr.setValue('cost_per_packet', good > 0 ? Math.round((totalCost / good) * 10000) / 10000 : 0)
+    },
+
+    /**
+     * Yield-adjusted consumption variance. Called from a BEFORE rule on
+     * material_consumption, so it mutates `current`.
+     *
+     * The expected consumption for a line is scaled by the batch's actual yield
+     * (good output / planned batch quantity) instead of the nominal batch size.
+     * That way over/under-consumption is measured against what the batch really
+     * produced: a batch that only yielded half its plan is expected to have
+     * consumed roughly half the planned materials, and only the remainder is
+     * reported as unaccounted.
+     */
+    recalcConsumptionVariance: function (current) {
+        var plannedLine = this.toNum(current.getValue('planned_quantity'))
+        var wastage = this.toNum(current.getValue('wastage_quantity'))
+        var actual = this.toNum(current.getValue('actual_quantity'))
+
+        var productionOrderId = current.getValue('production_order')
+        var batchPlanned = 0
+        var good = 0
+        if (!this.isBlank(productionOrderId)) {
+            var order = new GlideRecord(this.T_PRODUCTION_ORDER)
+            if (order.get(productionOrderId)) {
+                batchPlanned = this.toNum(order.getValue('planned_quantity'))
+            }
+            good = this.goodQuantityForOrder(productionOrderId)
+        }
+
+        // Fall back to the nominal planned line quantity when the yield ratio
+        // is not computable yet (no planned batch size or no output recorded).
+        var expected = batchPlanned > 0 && good > 0 ? plannedLine * (good / batchPlanned) : plannedLine
+
+        current.setValue('unaccounted_quantity', this.round2(actual - wastage - expected))
+    },
+
+    /** Yield % of an output/quality record. BEFORE rule - mutates `current`. */
+    recalcYield: function (current) {
+        var planned = this.toNum(current.getValue('planned_quantity'))
+        var good = this.toNum(current.getValue('good_quantity'))
+        current.setValue('yield_percent', planned > 0 ? this.round2((good / planned) * 100) : 0)
+    },
+
+    /**
+     * Touches every prod_cost row of a production order so that the prod_cost
+     * BEFORE rule recomputes it. No prod_cost row is ever auto-created.
+     */
+    recalcProdCostForOrder: function (productionOrderSysId) {
+        if (this.isBlank(productionOrderSysId)) {
+            return
+        }
+        var cost = new GlideRecord(this.T_PROD_COST)
+        cost.addQuery('production_order', productionOrderSysId)
+        cost.query()
+        while (cost.next()) {
+            // No-op touch: the BEFORE rule on prod_cost does the recompute.
+            cost.update()
+        }
+    },
+
+    type: 'SnackFlowCalc',
+}
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 07:56:11</sys_created_on>
+        <sys_id>d87df6accd7c4df9b634d42cfba2047d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SnackFlowCalc</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_script_include_d87df6accd7c4df9b634d42cfba2047d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 07:56:11</sys_updated_on>
+    </sys_script_include>
+</record_update>
