@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_2298436_snackf_0_sales_order_detail</collection>
+        <condition/>
+        <description>Posts a finished_product dispatch stock transaction for the incremental dispatched_quantity delta only. Order 250 so it runs after SnackFlow Sales Line Calc (150) and SnackFlow Sales Order Rollup (100). As of Stage 5 an insufficient-stock dispatch can no longer reach this rule: SnackFlow Dispatch Stock Guard (before, 160) aborts the line save first. The null-insert handling in this script is retained as a backstop in case stock is consumed by another transaction between the guard and the post.</description>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>SnackFlow Dispatch Stock Posting</name>
+        <order>250</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous) {
+    var calc = new x_2298436_snackf_0.SnackFlowCalc()
+
+    // DELTA ONLY. 'dispatched_quantity' is a running total on the sales order line,
+    // so posting nowQty would re-post everything already dispatched and double-count
+    // the item on every subsequent edit of the line. Only the increment since the
+    // previous save may be posted to the stock ledger.
+    var nowQty = calc.toNum(current.getValue('dispatched_quantity'))
+    // On insert there is no 'previous' record, so the baseline is 0.
+    var prevQty = previous ? calc.toNum(previous.getValue('dispatched_quantity')) : 0
+    var delta = calc.round2(nowQty - prevQty)
+
+    if (delta <= 0) {
+        // Nothing newly dispatched. A negative delta is a downward correction, and
+        // this rule deliberately posts nothing for it: reversing stock that already
+        // left the warehouse is a human decision (a 'return' or 'stock_adjustment'
+        // transaction entered on purpose), not something this rule should guess at.
+        return
+    }
+
+    var productId = current.getValue('product')
+    if (!productId) {
+        // Finished-product movements are keyed on 'product'. Without it there is no
+        // item to move, so there is nothing to post.
+        return
+    }
+
+    // Resolve the parent sales order number for the legacy text field. Guarded, so a
+    // missing/deleted parent leaves reference_number empty instead of 'undefined'.
+    var salesOrderId = current.getValue('sales_order')
+    var salesOrderNumber = ''
+    if (salesOrderId) {
+        var salesOrder = new GlideRecord('x_2298436_snackf_0_sales_order')
+        if (salesOrder.get(salesOrderId)) {
+            salesOrderNumber = salesOrder.getValue('number') || ''
+        }
+    }
+
+    // ONE dispatch row for exactly the delta.
+    var txn = new GlideRecord('x_2298436_snackf_0_stock_transaction')
+    txn.initialize()
+    txn.setValue('item_type', 'finished_product')
+    txn.setValue('product', productId)
+    txn.setValue('transaction_type', 'dispatch')
+    txn.setValue('quantity', delta)
+    // getValue() yields the internal UTC format setValue() expects. getDisplayValue() would
+    // write a timezone-dependent display string into a datetime column.
+    txn.setValue('transaction_date', new GlideDateTime().getValue())
+    txn.setValue('sales_order', salesOrderId) // true reference field
+    txn.setValue('reference_number', salesOrderNumber) // legacy text field kept consistent
+    txn.setValue(
+        'remarks',
+        'Auto-posted by SnackFlow Dispatch Stock Posting for ' + current.getValue('number') + ' (delta ' + delta + ').'
+    )
+
+    var inserted = txn.insert()
+    if (!inserted) {
+        // 'SnackFlow Stock Negative Check' (before insert, order 150) legitimately
+        // aborts this insert when there is not enough finished stock on hand. Report
+        // it loudly instead of swallowing it, and never try to force the row through.
+        gs.error(
+            'SnackFlow Dispatch Stock Posting: stock transaction insert was rejected for sales order detail ' +
+                current.getValue('number') +
+                ' (' +
+                current.getUniqueValue() +
+                '), product ' +
+                productId +
+                ', delta ' +
+                delta +
+                '. Finished-product stock is most likely insufficient - review the stock balance and post a manual adjustment if required.'
+        )
+    }
+})(current, previous)
+]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 08:29:17</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>96d21106267d4058846a0b92532e9454</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SnackFlow Dispatch Stock Posting</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_script_96d21106267d4058846a0b92532e9454</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 08:29:17</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=96d21106267d4058846a0b92532e9454"/>
+</record_update>

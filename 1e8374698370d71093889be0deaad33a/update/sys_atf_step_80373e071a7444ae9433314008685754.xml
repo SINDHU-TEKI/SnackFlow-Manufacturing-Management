@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description/>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>12</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>80373e071a7444ae9433314008685754</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_step_80373e071a7444ae9433314008685754</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <table/>
+        <test display_value="SnackFlow: payment rollup, balance due and paid/partially-paid transitions">2cb7c646d2774aef92b47115fc3320e7</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=80373e071a7444ae9433314008685754"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>80373e071a7444ae9433314008685754</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:45</sys_created_on>
+        <sys_id>1bf7960b46634bc49d2457220a4827fe</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:45</sys_updated_on>
+        <value>
+// ATF injects assertEqual, steps, outputs, stepResult and an enclosing try block - bare body.
+// steps(SYS_ID) is ATF's injected accessor for an earlier step's outputs. GEM {{ step[...] }}
+// templates are NOT substituted in a script body, so the sys_id must be passed literally.
+var invoiceId = steps("8639018182c540ea9f6f4c326fb8694c").record_id;
+if (!invoiceId || ('' + invoiceId).length !== 32) {
+    throw new Error('unresolved step reference for invoiceId: ' + invoiceId);
+}
+function num(v) { return parseFloat(v) || 0; }
+
+var inv = new GlideRecord('x_2298436_snackf_0_invoice');
+if (!inv.get(invoiceId)) throw new Error('invoice not found');
+
+// Re-sum the surviving payments independently and compare to the stored rollup.
+var summed = 0, rows = 0;
+var p = new GlideRecord('x_2298436_snackf_0_payment');
+p.addQuery('invoice', invoiceId);
+p.query();
+while (p.next()) { summed += num(p.getValue('payment_amount')); rows++; }
+summed = Math.round(summed * 100) / 100;
+
+assertEqual({ name: 'one payment remains after the delete', shouldbe: 1, value: rows });
+assertEqual({ name: 'amount_paid equals an independent re-sum of payments', shouldbe: summed, value: num(inv.getValue('amount_paid')) });
+assertEqual({
+    name: 'balance_due = total - amount_paid',
+    shouldbe: Math.round((num(inv.getValue('total_invoice_amount')) - summed) * 100) / 100,
+    value: num(inv.getValue('balance_due')),
+});
+
+// Back in outstanding receivables now that a balance remains.
+var out = new GlideRecord('x_2298436_snackf_0_invoice');
+out.addQuery('sys_id', invoiceId);
+out.addQuery('balance_due', '&gt;', 0);
+out.query();
+assertEqual({ name: 'invoice re-enters outstanding receivables', shouldbe: true, value: out.hasNext() });
+
+stepResult.setOutputMessage(
+    'payments=' + rows + ' summed=' + summed + ' amount_paid=' + inv.getValue('amount_paid') +
+    ' balance_due=' + inv.getValue('balance_due') + ' status=' + inv.getValue('invoice_status')
+);
+</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>80373e071a7444ae9433314008685754</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:45</sys_created_on>
+        <sys_id>cdbc108a3191495886b8af5d1a8972fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:45</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

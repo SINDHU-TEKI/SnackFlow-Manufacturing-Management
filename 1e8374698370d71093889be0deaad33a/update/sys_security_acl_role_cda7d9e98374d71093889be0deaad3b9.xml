@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-26 14:24:20</sys_created_on>
+        <sys_id>cda7d9e98374d71093889be0deaad3b9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_2298436_snackf_0_production_order.x_2298436_snackf_0.owner</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_security_acl display_value="x_2298436_snackf_0_production_order">f0a759e98374d71093889be0deaad3e4</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_cda7d9e98374d71093889be0deaad3b9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-26 14:24:20</sys_updated_on>
+        <sys_user_role display_value="x_2298436_snackf_0.owner" name="x_2298436_snackf_0.owner">568374698370d71093889be0deaad366</sys_user_role>
+    </sys_security_acl_role>
+</record_update>

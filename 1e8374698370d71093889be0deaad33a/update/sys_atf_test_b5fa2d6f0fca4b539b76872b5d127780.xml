@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test">
+    <sys_atf_test action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Validates SnackFlow Invoice GST Calc (before/50) plus the pre-existing Invoice Total Calc (100) and reactivated Invoice Total Check (150). Inserts an invoice against the Tamil Nadu order so place_of_supply defaults to the customer state and asserts the intrastate split (gst_type=cgst_sgst, 5% of 10000 halved into CGST 250 + SGST 250, total 10500); then inserts an invoice against the Karnataka order with place_of_supply overridden to tamil_nadu and asserts the interstate case (gst_type=igst, IGST 500, CGST/SGST zero, total 10500). The 5% rate is resolved from the Murukku product master, never supplied by the test.</description>
+        <enable_parameterized_testing>false</enable_parameterized_testing>
+        <fail_on_server_error>true</fail_on_server_error>
+        <name>SnackFlow: GST calculation (intrastate CGST/SGST and interstate IGST)</name>
+        <parameters/>
+        <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
+        <sys_class_name>sys_atf_test</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:47</sys_created_on>
+        <sys_id>b5fa2d6f0fca4b539b76872b5d127780</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SnackFlow: GST calculation (intrastate CGST/SGST and interstate IGST)</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_test_b5fa2d6f0fca4b539b76872b5d127780</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:47</sys_updated_on>
+        <test_origin>manual</test_origin>
+    </sys_atf_test>
+    <sys_variable_value action="delete_multiple" query="document_key=b5fa2d6f0fca4b539b76872b5d127780"/>
+</record_update>

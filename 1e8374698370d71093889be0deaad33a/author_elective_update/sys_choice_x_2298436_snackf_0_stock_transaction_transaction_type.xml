@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="transaction_type" table="x_2298436_snackf_0_stock_transaction" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>transaction_type</element>
+            <name>x_2298436_snackf_0_stock_transaction</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-26 12:38:55</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>transaction_type</sys_name>
+            <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+            <sys_update_name>sys_choice_x_2298436_snackf_0_stock_transaction_transaction_type</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-26 12:38:55</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>transaction_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Opening Stock</label>
+            <language>en</language>
+            <name>x_2298436_snackf_0_stock_transaction</name>
+            <sequence>0</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:50</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:50</sys_updated_on>
+            <value>opening_stock</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>transaction_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Purchase</label>
+            <language>en</language>
+            <name>x_2298436_snackf_0_stock_transaction</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:50</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:50</sys_updated_on>
+            <value>purchase</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>transaction_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Production Issue</label>
+            <language>en</language>
+            <name>x_2298436_snackf_0_stock_transaction</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:50</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:50</sys_updated_on>
+            <value>production_issue</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>transaction_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Production Receipt</label>
+            <language>en</language>
+            <name>x_2298436_snackf_0_stock_transaction</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:50</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:50</sys_updated_on>
+            <value>production_receipt</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>transaction_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Dispatch</label>
+            <language>en</language>
+            <name>x_2298436_snackf_0_stock_transaction</name>
+            <sequence>4</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:50</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:50</sys_updated_on>
+            <value>dispatch</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>transaction_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Stock Adjustment</label>
+            <language>en</language>
+            <name>x_2298436_snackf_0_stock_transaction</name>
+            <sequence>5</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:50</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:50</sys_updated_on>
+            <value>stock_adjustment</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>transaction_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Return</label>
+            <language>en</language>
+            <name>x_2298436_snackf_0_stock_transaction</name>
+            <sequence>6</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:50</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:50</sys_updated_on>
+            <value>return</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_application">
+    <sys_app_application action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category/>
+        <description>Raw material and packaging inventory, purchasing, BOM, production, sales, GST invoicing, costing and stock movement.</description>
+        <device_type>browser</device_type>
+        <hint>Food manufacturing order-to-audit management</hint>
+        <name/>
+        <order>100</order>
+        <roles>x_2298436_snackf_0.owner,x_2298436_snackf_0.factory_admin,x_2298436_snackf_0.accountant,x_2298436_snackf_0.production_supervisor,x_2298436_snackf_0.salesman,admin</roles>
+        <sys_class_name>sys_app_application</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 08:54:57</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>42a45f51c37e4f979c59a343e0926dc5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SnackFlow</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_app_application_42a45f51c37e4f979c59a343e0926dc5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 08:54:57</sys_updated_on>
+        <title>SnackFlow</title>
+        <view_name/>
+    </sys_app_application>
+</record_update>

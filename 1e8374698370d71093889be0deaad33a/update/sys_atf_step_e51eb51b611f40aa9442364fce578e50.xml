@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description/>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>13</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:47</sys_created_on>
+        <sys_id>e51eb51b611f40aa9442364fce578e50</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_step_e51eb51b611f40aa9442364fce578e50</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:47</sys_updated_on>
+        <table/>
+        <test display_value="SnackFlow: pending quantity, dispatch stock guard and downward corrections">c351e52b4d234b00883fad456c6f6bd6</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=e51eb51b611f40aa9442364fce578e50"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>e51eb51b611f40aa9442364fce578e50</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:47</sys_created_on>
+        <sys_id>c19a8d047e4043d39b6681e4f017b291</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:47</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>e51eb51b611f40aa9442364fce578e50</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:47</sys_created_on>
+        <sys_id>f35d8393569f48b498d2bb60faf6cdd6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:47</sys_updated_on>
+        <value>
+// ATF injects assertEqual, steps, outputs, stepResult and an enclosing try block - bare body.
+// steps(SYS_ID) is ATF's injected accessor for an earlier step's outputs. GEM {{ step[...] }}
+// templates are NOT substituted in a script body, so the sys_id must be passed literally.
+var productId = steps("c732959cfa35446aa33434725cc69f73").record_id;
+if (!productId || ('' + productId).length !== 32) {
+    throw new Error('unresolved step reference for productId: ' + productId);
+}
+var calc = new x_2298436_snackf_0.SnackFlowCalc();
+
+// The whole point of moving the guard to a before-rule: the line save is refused,
+// so line and ledger cannot diverge.
+assertEqual({ name: 'ledger untouched by the refused dispatch', shouldbe: 20, value: calc.ledgerBalance('finished_product', productId, null) });
+
+var cnt = 0;
+var g = new GlideRecord('x_2298436_snackf_0_stock_transaction');
+g.addQuery('product', productId);
+g.addQuery('remarks', 'STARTSWITH', 'Auto-posted by SnackFlow Dispatch Stock Posting');
+g.query();
+while (g.next()) cnt++;
+assertEqual({ name: 'still only one auto-posted row after refusal', shouldbe: 1, value: cnt });
+
+stepResult.setOutputMessage('after refusal: balance=20 auto_posted_rows=' + cnt);
+</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+</record_update>

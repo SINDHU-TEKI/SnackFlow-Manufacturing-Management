@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description/>
+        <display_name>Run Server Side Script</display_name>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>9</order>
+        <step_config display_value="Run Server Side Script">41de4a935332120028bc29cac2dc349a</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:44</sys_created_on>
+        <sys_id>473f3fddfc7f46abb20b2354a46a1848</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Run Server Side Script</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_step_473f3fddfc7f46abb20b2354a46a1848</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:44</sys_updated_on>
+        <table/>
+        <test display_value="SnackFlow: payment rollup, balance due and paid/partially-paid transitions">2cb7c646d2774aef92b47115fc3320e7</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=473f3fddfc7f46abb20b2354a46a1848"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>473f3fddfc7f46abb20b2354a46a1848</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:44</sys_created_on>
+        <sys_id>af3b727eb9ac4326aa25d7985bd0a7db</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:44</sys_updated_on>
+        <value>
+// ATF injects assertEqual, steps, outputs, stepResult and an enclosing try block - bare body.
+// steps(SYS_ID) is ATF's injected accessor for an earlier step's outputs. GEM {{ step[...] }}
+// templates are NOT substituted in a script body, so the sys_id must be passed literally.
+var invoiceId = steps("8639018182c540ea9f6f4c326fb8694c").record_id;
+if (!invoiceId || ('' + invoiceId).length !== 32) {
+    throw new Error('unresolved step reference for invoiceId: ' + invoiceId);
+}
+var g = new GlideRecord('x_2298436_snackf_0_invoice');
+g.addQuery('sys_id', invoiceId);
+g.addQuery('balance_due', '&gt;', 0);
+g.query();
+assertEqual({ name: 'fully paid invoice drops out of outstanding receivables', shouldbe: false, value: g.hasNext() });
+stepResult.setOutputMessage('fully settled invoice excluded from balance_due&gt;0');
+</value>
+        <variable display_value="Test script">989d9e235324220002c6435723dc3484</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>473f3fddfc7f46abb20b2354a46a1848</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:44</sys_created_on>
+        <sys_id>f10374e598f447cc8750da146a221c67</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:44</sys_updated_on>
+        <value>3.1</value>
+        <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
+    </sys_variable_value>
+</record_update>

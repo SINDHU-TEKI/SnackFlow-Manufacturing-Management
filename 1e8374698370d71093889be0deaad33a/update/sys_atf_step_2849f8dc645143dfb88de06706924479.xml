@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description/>
+        <display_name>Record Insert</display_name>
+        <inputs/>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>5</order>
+        <step_config display_value="Record Insert">14872288df60220062fe6c7a4df26319</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:43</sys_created_on>
+        <sys_id>2849f8dc645143dfb88de06706924479</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Insert</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_step_2849f8dc645143dfb88de06706924479</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:43</sys_updated_on>
+        <table>x_2298436_snackf_0_sales_order_detail</table>
+        <test display_value="SnackFlow: pending quantity, dispatch stock guard and downward corrections">c351e52b4d234b00883fad456c6f6bd6</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=2849f8dc645143dfb88de06706924479"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>2849f8dc645143dfb88de06706924479</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:43</sys_created_on>
+        <sys_id>4952135c399a4ccab2c370523712093e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:43</sys_updated_on>
+        <value>x_2298436_snackf_0_sales_order_detail</value>
+        <variable display_value="Table">90144b535320220002c6435723dc3488</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>2849f8dc645143dfb88de06706924479</document_key>
+        <order>400</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:43</sys_created_on>
+        <sys_id>5857bba60a984fc9965c80ada1843e60</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:43</sys_updated_on>
+        <value>sales_order={{step['57f86661e54f493991017c5fcc34e8b9'].record_id}}^product={{step['c732959cfa35446aa33434725cc69f73'].record_id}}^ordered_quantity=100^dispatched_quantity=0^unit_price=20^EQ</value>
+        <variable display_value="Field values">dd54cf535320220002c6435723dc34fd</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>2849f8dc645143dfb88de06706924479</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:43</sys_created_on>
+        <sys_id>c503f04fd0fd45bb8068577d3ad422c3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:43</sys_updated_on>
+        <value>1</value>
+        <variable display_value="Enforce security">e6e3c7535320220002c6435723dc3496</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>2849f8dc645143dfb88de06706924479</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:43</sys_created_on>
+        <sys_id>f279c5cefabe44bb9fbf2c081175c9df</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:43</sys_updated_on>
+        <value>record_successfully_inserted</value>
+        <variable display_value="Assert type">9024a37f671003007ba405225685efe5</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="id=2849f8dc645143dfb88de06706924479"/>
+    <sys_element_mapping action="INSERT_OR_UPDATE">
+        <field>field_values</field>
+        <id>2849f8dc645143dfb88de06706924479</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 11:10:43</sys_created_on>
+        <sys_id>660eeb0f6b5b4498ba64c380d920c9d8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 11:10:43</sys_updated_on>
+        <table>var__m_atf_input_variable_14872288df60220062fe6c7a4df26319</table>
+        <value>sales_order={{step['57f86661e54f493991017c5fcc34e8b9'].record_id}}^product={{step['c732959cfa35446aa33434725cc69f73'].record_id}}^ordered_quantity=100^dispatched_quantity=0^unit_price=20^EQ</value>
+    </sys_element_mapping>
+</record_update>

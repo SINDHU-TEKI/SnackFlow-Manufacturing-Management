@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="826e70ad83b0d71093889be0deaad3b5" label="Stock Transaction" max_length="40" name="x_2298436_snackf_0_stock_transaction" type="collection">
+        <element label="Product" max_length="32" name="product" reference="x_2298436_snackf_0_product" type="reference"/>
+        <element label="Quantity" max_length="38" name="quantity" type="decimal"/>
+        <element label="Packaging Material" max_length="32" name="packaging_material" reference="x_2298436_snackf_0_packaging_material" type="reference"/>
+        <element label="Purchase Order" name="purchase_order" reference="x_2298436_snackf_0_purchase_order" reference_cascade_rule="none" type="reference"/>
+        <element label="Sales Order" name="sales_order" reference="x_2298436_snackf_0_sales_order" reference_cascade_rule="none" type="reference"/>
+        <element choice="3" label="Item Type" max_length="40" name="item_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Packaging Material" sequence="1" value="packaging_material"/>
+                <element inactive_on_update="false" label="Raw Material" sequence="0" value="raw_material"/>
+                <element inactive_on_update="false" label="Finished Product" sequence="2" value="finished_product"/>
+            </choice>
+        </element>
+        <element label="Raw Material" max_length="32" name="raw_material" reference="x_2298436_snackf_0_raw_material" type="reference"/>
+        <element label="Production Order" name="production_order" reference="x_2298436_snackf_0_production_order" reference_cascade_rule="none" type="reference"/>
+        <element label="Transaction Date" max_length="40" name="transaction_date" type="glide_date_time"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Remarks" max_length="1000" name="remarks" type="string"/>
+        <element label="Reference Number" max_length="40" name="reference_number" type="string"/>
+        <element choice="3" display="true" label="Transaction Type" max_length="255" name="transaction_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Production Issue" sequence="2" value="production_issue"/>
+                <element inactive_on_update="false" label="Return" sequence="6" value="return"/>
+                <element inactive_on_update="false" label="Dispatch" sequence="4" value="dispatch"/>
+                <element inactive_on_update="false" label="Stock Adjustment" sequence="5" value="stock_adjustment"/>
+                <element inactive_on_update="false" label="Production Receipt" sequence="3" value="production_receipt"/>
+                <element inactive_on_update="false" label="Purchase" sequence="1" value="purchase"/>
+                <element inactive_on_update="false" label="Opening Stock" sequence="0" value="opening_stock"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="packaging_material"/>
+        </index>
+        <index name="index2">
+            <element name="product"/>
+        </index>
+        <index name="index3">
+            <element name="production_order"/>
+        </index>
+        <index name="index4">
+            <element name="purchase_order"/>
+        </index>
+        <index name="index5">
+            <element name="raw_material"/>
+        </index>
+        <index name="index6">
+            <element name="sales_order"/>
+        </index>
+    </element>
+</database>

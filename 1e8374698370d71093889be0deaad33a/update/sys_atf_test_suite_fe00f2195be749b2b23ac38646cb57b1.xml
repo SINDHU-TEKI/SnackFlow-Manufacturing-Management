@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test_suite">
+    <sys_atf_test_suite action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Covers the five calculation engines added in Stages 2-5: dynamic GST (intrastate and interstate), ledger-driven stock balance with negative-stock prevention, pending quantity with the dispatch stock guard, production costing with packaging completeness, and the payment rollup including the delete path.</description>
+        <input_filter/>
+        <name>SnackFlow Regression Suite</name>
+        <parent/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
+        <sys_class_name>sys_atf_test_suite</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:47</sys_created_on>
+        <sys_id>fe00f2195be749b2b23ac38646cb57b1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SnackFlow Regression Suite</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_test_suite_fe00f2195be749b2b23ac38646cb57b1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:47</sys_updated_on>
+    </sys_atf_test_suite>
+</record_update>

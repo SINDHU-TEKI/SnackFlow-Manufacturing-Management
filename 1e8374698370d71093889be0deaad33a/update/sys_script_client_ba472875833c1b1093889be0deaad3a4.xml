@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description>DEACTIVATED (Stage 3): exact duplicate of "IGST Total Calc", which runs onChange of the same igst_amount field on the same table with identical arithmetic and an identical trigger surface (table, type, field, global, isolateScript, appliesExtended, order, condition, uiType, messages, view all matched). "IGST Total Calc" is retained because it passes the sum to g_form.setValue as a string, which is the safer form. Record preserved, not deleted.</description>
+        <field>igst_amount</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Recalculate Invoice Total on IGST Change</name>
+        <order/>
+        <script><![CDATA[
+function onChange(control, oldValue, newValue, isLoading) {
+    if (isLoading) return;
+
+    var taxable = parseFloat(g_form.getValue('taxable_amount')) || 0;
+    var cgst = parseFloat(g_form.getValue('cgst_amount')) || 0;
+    var sgst = parseFloat(g_form.getValue('sgst_amount')) || 0;
+    var igst = parseFloat(g_form.getValue('igst_amount')) || 0;
+
+    g_form.setValue(
+        'total_invoice_amount',
+        taxable + cgst + sgst + igst
+    );
+}
+]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 05:32:10</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>ba472875833c1b1093889be0deaad3a4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Recalculate Invoice Total on IGST Change</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_script_client_ba472875833c1b1093889be0deaad3a4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 05:32:10</sys_updated_on>
+        <table>x_2298436_snackf_0_invoice</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

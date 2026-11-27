@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test">
+    <sys_atf_test action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Validates SnackFlow Production Cost Calc (before/100) and the consumption/output refresh rules (after/200) on a purpose-created production order. Consumes 20 kg Flour at 45 and 5 L Oil at 140 for a material cost of 1600, plus 100 Printed Pouches whose unit_cost is blank so packaging contributes 0 and packaging_cost_complete stays false; with labour 300 and overhead 150 asserts total_cost 2050 over 95 good packets and cost per packet 2050/95. Also asserts the consumption rows posted nothing to the stock ledger.</description>
+        <enable_parameterized_testing>false</enable_parameterized_testing>
+        <fail_on_server_error>true</fail_on_server_error>
+        <name>SnackFlow: production cost, cost per packet and packaging completeness</name>
+        <parameters/>
+        <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
+        <sys_class_name>sys_atf_test</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:47</sys_created_on>
+        <sys_id>39ad052e4d404c26aff3a4d67c849897</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SnackFlow: production cost, cost per packet and packaging completeness</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_test_39ad052e4d404c26aff3a4d67c849897</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:47</sys_updated_on>
+        <test_origin>manual</test_origin>
+    </sys_atf_test>
+    <sys_variable_value action="delete_multiple" query="document_key=39ad052e4d404c26aff3a4d67c849897"/>
+</record_update>

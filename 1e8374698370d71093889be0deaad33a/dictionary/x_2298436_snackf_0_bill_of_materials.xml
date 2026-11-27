@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="5e3259618374d71093889be0deaad394" label="Bill of Materials" max_length="40" name="x_2298436_snackf_0_bill_of_materials" type="collection">
+        <element label="BOM Version" max_length="40" name="bom_version" type="string"/>
+        <element label="Batch Size" max_length="38" name="batch_size" type="decimal"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element choice="3" label="Batch Unit" max_length="40" name="batch_unit" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Kg" sequence="1" value="kg"/>
+                <element inactive_on_update="false" label="Packet" sequence="0" value="packet"/>
+                <element inactive_on_update="false" label="Batch" sequence="2" value="batch"/>
+            </choice>
+        </element>
+        <element display="true" label="Product" max_length="32" name="product" reference="x_2298436_snackf_0_product" type="reference"/>
+        <element label="Remarks" max_length="1000" name="remarks" type="string"/>
+        <element label="Active" max_length="40" name="active" type="boolean"/>
+        <index name="index">
+            <element name="product"/>
+        </index>
+    </element>
+</database>

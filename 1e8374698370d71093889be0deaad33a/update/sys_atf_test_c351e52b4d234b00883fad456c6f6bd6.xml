@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_test">
+    <sys_atf_test action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <copied_from/>
+        <description>Validates SnackFlow Sales Line Calc (before/150), SnackFlow Dispatch Stock Guard (before/160) and SnackFlow Dispatch Stock Posting (after/250) on a purpose-created sales order line. Asserts pending = ordered - dispatched on insert (100/0/100) and after a covered dispatch (100/40/60) which posts exactly the delta of 40; then asserts an over-dispatch beyond available stock is NOT updated and leaves the line and ledger untouched; finally asserts a downward correction saves but posts nothing to the ledger.</description>
+        <enable_parameterized_testing>false</enable_parameterized_testing>
+        <fail_on_server_error>true</fail_on_server_error>
+        <name>SnackFlow: pending quantity, dispatch stock guard and downward corrections</name>
+        <parameters/>
+        <remember/>
+        <sn_atf_tg_generated>false</sn_atf_tg_generated>
+        <sys_class_name>sys_atf_test</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:47</sys_created_on>
+        <sys_id>c351e52b4d234b00883fad456c6f6bd6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SnackFlow: pending quantity, dispatch stock guard and downward corrections</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_test_c351e52b4d234b00883fad456c6f6bd6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:47</sys_updated_on>
+        <test_origin>manual</test_origin>
+    </sys_atf_test>
+    <sys_variable_value action="delete_multiple" query="document_key=c351e52b4d234b00883fad456c6f6bd6"/>
+</record_update>

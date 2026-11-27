@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="2f9719e98374d71093889be0deaad34a" label="Production Order" max_length="40" name="x_2298436_snackf_0_production_order" type="collection">
+        <element label="Planned Quantity" max_length="38" name="planned_quantity" type="decimal"/>
+        <element label="Production Date" max_length="40" name="production_date" type="glide_date_time"/>
+        <element label="Remarks" max_length="1000" name="remarks" type="string"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Production Supervisor" max_length="32" name="production_supervisor" reference="sys_user" type="reference"/>
+        <element label="Bill of Materials" max_length="32" name="bill_of_materials" reference="x_2298436_snackf_0_bill_of_materials" type="reference"/>
+        <element choice="3" label="Status" max_length="40" name="status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Completed" sequence="3" value="completed"/>
+                <element inactive_on_update="false" label="Planned" sequence="1" value="planned"/>
+                <element inactive_on_update="false" label="Draft" sequence="0" value="draft"/>
+                <element inactive_on_update="false" label="Cancelled" sequence="4" value="cancelled"/>
+                <element inactive_on_update="false" label="In Progress" sequence="2" value="in_progress"/>
+            </choice>
+        </element>
+        <element display="true" label="Product" max_length="32" name="product" reference="x_2298436_snackf_0_product" type="reference"/>
+        <index name="index">
+            <element name="bill_of_materials"/>
+        </index>
+        <index name="index2">
+            <element name="product"/>
+        </index>
+        <index name="index3">
+            <element name="production_supervisor"/>
+        </index>
+    </element>
+</database>
