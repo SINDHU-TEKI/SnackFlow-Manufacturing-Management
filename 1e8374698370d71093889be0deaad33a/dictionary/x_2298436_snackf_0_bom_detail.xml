@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="1e469d298374d71093889be0deaad368" label="BOM Detail" max_length="40" name="x_2298436_snackf_0_bom_detail" type="collection">
+        <element choice="3" label="Item Type" max_length="40" name="item_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Packaging Material" sequence="1" value="packaging_material"/>
+                <element inactive_on_update="false" label="Raw Material" sequence="0" value="raw_material"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Required Quantity" max_length="38" name="required_quantity" type="decimal"/>
+        <element label="Raw Material" max_length="32" name="raw_material" reference="x_2298436_snackf_0_raw_material" type="reference"/>
+        <element label="Packaging Material" max_length="32" name="packaging_material" reference="x_2298436_snackf_0_packaging_material" type="reference"/>
+        <element display="true" label="Bill of Materials" max_length="32" name="bill_of_materials" reference="x_2298436_snackf_0_bill_of_materials" type="reference"/>
+        <element label="Unit" max_length="40" name="unit" type="string"/>
+        <index name="index">
+            <element name="bill_of_materials"/>
+        </index>
+        <index name="index2">
+            <element name="packaging_material"/>
+        </index>
+        <index name="index3">
+            <element name="raw_material"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Stock Balance" section_id="4f17d88b27be478b8e226e379b03e856" sys_domain="global" table="x_2298436_snackf_0_stock_bal" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>a5040888d75745058027561d5f2c37c4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>number</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>2a4b298bbe0a4fbe862573eda6917175</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>raw_material</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>10338a4b1bfe4fd3928570a2a724fd99</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>product</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>2182057aa2494fbdbfcf1982b122e3e9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>unit</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>bd2908b29b8d40c6b736cee6df8e7958</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>reorder_level</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>6c6e6d1bab8f4b0eb909411c6dedb810</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>last_txn_date</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>20aaef406041441581caee2fc3132494</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>f59e0479dd1849cfa0763fc32985e5db</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>item_type</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>e4b4292aec844e18b425d940c9b7d92c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>packaging_material</element>
+            <position>9</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>fb61bd8df5784650ac55f990e14e8e90</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>item_name</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>d1b994c3ed714908a67db1b832749297</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>current_balance</element>
+            <position>11</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>77f0dd1330484c74afb74164f95a3d52</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>below_reorder</element>
+            <position>12</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>45a3db8f3c0646ef8b652b36b424ff9b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>13</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:10:58</sys_created_on>
+            <sys_id>673c06cae92146c28b84fae591caa0f4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stock Balance" display_value="Stock Balance" name="x_2298436_snackf_0_stock_bal" sys_domain="global" view="Default view">4f17d88b27be478b8e226e379b03e856</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:10:58</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Stock Balance</caption>
+            <header>false</header>
+            <name>x_2298436_snackf_0_stock_bal</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 07:33:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4f17d88b27be478b8e226e379b03e856</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_2298436_snackf_0_stock_bal</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+            <sys_update_name>sys_ui_section_4f17d88b27be478b8e226e379b03e856</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 07:33:30</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard_canvas">
     <par_dashboard_canvas action="INSERT_OR_UPDATE">
         <dashboard display_value="SnackFlow Management">b037fdb51afc4c988e5ce5507474da4c</dashboard>
-        <dashboard_tab display_value="">ba8b080a4d8d4773b7a670f661a61a86</dashboard_tab>
+        <dashboard_tab display_value="Overview">ba8b080a4d8d4773b7a670f661a61a86</dashboard_tab>
         <layout/>
         <sys_class_name>par_dashboard_canvas</sys_class_name>
         <sys_created_by>admin</sys_created_by>

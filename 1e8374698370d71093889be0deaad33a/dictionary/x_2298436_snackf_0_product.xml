@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="59c7f46183b0d71093889be0deaad3c7" label="Product" max_length="40" name="x_2298436_snackf_0_product" type="collection">
+        <element label="GST Rate" max_length="38" name="gst_rate" type="decimal"/>
+        <element label="Pack Size (g)" max_length="40" name="pack_size_g" type="integer"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="HSN Code" max_length="40" name="hsn_code" type="string"/>
+        <element label="Active" max_length="40" name="active" type="boolean"/>
+        <element display="true" label="Product Name" max_length="40" name="product_name" type="string"/>
+        <element label="Product Code" max_length="40" name="product_code" type="string"/>
+        <element label="Selling Price" max_length="38" name="selling_price" type="decimal"/>
+    </element>
+</database>

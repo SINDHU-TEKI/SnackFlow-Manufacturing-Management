@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="0be565e583f4d71093889be0deaad327" label="Payment" max_length="40" name="x_2298436_snackf_0_payment" type="collection">
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Transaction Reference" max_length="40" name="transaction_reference" type="string"/>
+        <element label="Payment Date" max_length="40" name="payment_date" type="glide_date_time"/>
+        <element label="Customer" max_length="32" name="customer" reference="x_2298436_snackf_0_customer" type="reference"/>
+        <element display="true" label="Invoice" max_length="32" name="invoice" reference="x_2298436_snackf_0_invoice" type="reference"/>
+        <element label="Payment Amount" max_length="38" name="payment_amount" type="decimal"/>
+        <element label="Remarks" max_length="1000" name="remarks" type="string"/>
+        <element choice="3" label="Payment Mode" max_length="40" name="payment_mode" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Bank Transfer" sequence="2" value="bank_transfer"/>
+                <element inactive_on_update="false" label="Cheque" sequence="3" value="cheque"/>
+                <element inactive_on_update="false" label="UPI" sequence="1" value="upi"/>
+                <element inactive_on_update="false" label="Cash" sequence="0" value="cash"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="customer"/>
+        </index>
+        <index name="index2">
+            <element name="invoice"/>
+        </index>
+    </element>
+</database>

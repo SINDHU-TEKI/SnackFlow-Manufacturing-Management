@@ -23,7 +23,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
         <table/>
-        <test display_value="">2cb7c646d2774aef92b47115fc3320e7</test>
+        <test display_value="SnackFlow: payment rollup, balance due and paid/partially-paid transitions">2cb7c646d2774aef92b47115fc3320e7</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
@@ -34,11 +34,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:47</sys_created_on>
         <sys_id>217e923825ad4375a634b248d9c0abb3</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:47</sys_updated_on>
         <value/>
         <variable display_value="User field values">1778a7480f20101091d0f00c97767e03</variable>
     </sys_variable_value>
@@ -48,11 +48,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:47</sys_created_on>
         <sys_id>66d6cf55697e49c280e19435924ac0cf</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:47</sys_updated_on>
         <value>1</value>
         <variable display_value="Impersonate this user">98c44875ffa033008d3f5d9ad53bf1fa</variable>
     </sys_variable_value>
@@ -62,11 +62,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:47</sys_created_on>
         <sys_id>6d4c9dcf481e4e7a8cc9de95cb2eb8a6</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:47</sys_updated_on>
         <value/>
         <variable display_value="Groups">b27b2b29ff6033008d3f5d9ad53bf164</variable>
     </sys_variable_value>
@@ -76,11 +76,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:47</sys_created_on>
         <sys_id>a99509cb9fe54903bae0e7df2e821f98</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:47</sys_updated_on>
         <value>Accountant Payments</value>
         <variable display_value="Last name">6f69fc4aff6433008d3f5d9ad53bf18c</variable>
     </sys_variable_value>
@@ -90,11 +90,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:47</sys_created_on>
         <sys_id>e64d99de798d4026a97f21ef11a7a3de</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:47</sys_updated_on>
         <value>928374698370d71093889be0deaad374</value>
         <variable display_value="Roles">8c07aba5ff6033008d3f5d9ad53bf13b</variable>
     </sys_variable_value>
@@ -104,11 +104,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:47</sys_created_on>
         <sys_id>e7fae16eb56f4580bef8578b4c49db5e</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:47</sys_updated_on>
         <value>sys_user</value>
         <variable display_value="Table">ff06ab840f20101091d0f00c97767e6d</variable>
     </sys_variable_value>
@@ -118,11 +118,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:47</sys_created_on>
         <sys_id>f1fd8b23774645e581f395997e9a7e01</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:47</sys_updated_on>
         <value>ATF</value>
         <variable display_value="First name">1985e0ceff2433008d3f5d9ad53bf1ba</variable>
     </sys_variable_value>

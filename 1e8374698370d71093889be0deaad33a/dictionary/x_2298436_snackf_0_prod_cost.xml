@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" db_object_id="9a020e80891e4e27855da435221cfca8" label="Production Cost" name="x_2298436_snackf_0_prod_cost" type="collection">
+        <element label="Packaging Cost Complete" name="packaging_cost_complete" read_only="true" read_only_option="instance_configured" type="boolean"/>
+        <element label="Production Order" mandatory="true" name="production_order" reference="x_2298436_snackf_0_production_order" type="reference"/>
+        <element default="javascript:global.getNextObjNumberPadded();" display="true" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Labour Cost" name="labour_cost" type="decimal"/>
+        <element label="Good Quantity" name="good_quantity" read_only="true" read_only_option="instance_configured" type="decimal"/>
+        <element label="Remarks" max_length="1000" name="remarks" type="multi_two_lines"/>
+        <element label="Cost Per Packet" name="cost_per_packet" read_only="true" read_only_option="instance_configured" type="decimal"/>
+        <element label="Packaging Cost" name="packaging_cost" read_only="true" read_only_option="instance_configured" type="decimal"/>
+        <element label="Total Cost" name="total_cost" read_only="true" read_only_option="instance_configured" type="decimal"/>
+        <element label="Material Cost" name="material_cost" read_only="true" read_only_option="instance_configured" type="decimal"/>
+        <element label="Gas &amp; Power Cost" name="overhead_cost" type="decimal"/>
+        <index name="index">
+            <element name="production_order"/>
+        </index>
+    </element>
+</database>

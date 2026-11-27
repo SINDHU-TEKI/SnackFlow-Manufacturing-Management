@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="5473a9a183f4d71093889be0deaad3a8" label="Invoice" max_length="40" name="x_2298436_snackf_0_invoice" type="collection">
+        <element label="Place of Supply" name="place_of_supply" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Tamil Nadu" sequence="0" value="tamil_nadu"/>
+                <element inactive_on_update="false" label="Karnataka" sequence="1" value="karnataka"/>
+            </choice>
+        </element>
+        <element label="SGST Amount" max_length="38" name="sgst_amount" type="decimal"/>
+        <element label="Amount Paid" name="amount_paid" read_only="true" read_only_option="instance_configured" type="decimal"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Taxable Amount" max_length="38" name="taxable_amount" type="decimal"/>
+        <element choice="3" label="Invoice Status" max_length="40" name="invoice_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Cancelled" sequence="4" value="cancelled"/>
+                <element inactive_on_update="false" label="Draft" sequence="0" value="draft"/>
+                <element inactive_on_update="false" label="Partially Paid" sequence="2" value="partially_paid"/>
+                <element inactive_on_update="false" label="Paid" sequence="3" value="paid"/>
+                <element inactive_on_update="false" label="Issued" sequence="1" value="issued"/>
+            </choice>
+        </element>
+        <element choice="3" label="GST Type" max_length="40" name="gst_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="CGST   SGST" sequence="0" value="cgst_sgst"/>
+                <element inactive_on_update="false" label="IGST" sequence="1" value="igst"/>
+            </choice>
+        </element>
+        <element label="Customer" max_length="32" name="customer" reference="x_2298436_snackf_0_customer" type="reference"/>
+        <element label="CGST Amount" max_length="38" name="cgst_amount" type="decimal"/>
+        <element label="IGST Amount" max_length="38" name="igst_amount" type="decimal"/>
+        <element label="Customer GSTIN" max_length="20" name="customer_gstin" type="string"/>
+        <element display="true" label="Sales Order" max_length="32" name="sales_order" reference="x_2298436_snackf_0_sales_order" type="reference"/>
+        <element label="Invoice Date" max_length="40" name="invoice_date" type="glide_date"/>
+        <element label="Total Invoice Amount" max_length="38" name="total_invoice_amount" type="decimal"/>
+        <element label="Balance Due" name="balance_due" read_only="true" read_only_option="instance_configured" type="decimal"/>
+        <index name="index">
+            <element name="customer"/>
+        </index>
+        <index name="index2">
+            <element name="sales_order"/>
+        </index>
+    </element>
+</database>

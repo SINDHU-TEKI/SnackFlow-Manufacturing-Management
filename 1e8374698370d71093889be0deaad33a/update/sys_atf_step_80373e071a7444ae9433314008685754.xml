@@ -34,11 +34,11 @@
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:42:05</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:45</sys_created_on>
         <sys_id>1bf7960b46634bc49d2457220a4827fe</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:42:05</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:45</sys_updated_on>
         <value>
 // ATF injects assertEqual, steps, outputs, stepResult and an enclosing try block - bare body.
 // steps(SYS_ID) is ATF's injected accessor for an earlier step's outputs. GEM {{ step[...] }}
@@ -88,11 +88,11 @@ stepResult.setOutputMessage(
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:42:05</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:45</sys_created_on>
         <sys_id>cdbc108a3191495886b8af5d1a8972fb</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:42:05</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:45</sys_updated_on>
         <value>3.1</value>
         <variable display_value="Jasmine version">42f2564b73031300440211d8faf6a777</variable>
     </sys_variable_value>

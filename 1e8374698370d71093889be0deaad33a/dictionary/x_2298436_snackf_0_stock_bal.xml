@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" db_object_id="42775392ba68491c9f11aecc5eb11541" label="Stock Balance" name="x_2298436_snackf_0_stock_bal" type="collection">
+        <element label="Current Balance" name="current_balance" read_only="true" read_only_option="instance_configured" type="decimal"/>
+        <element label="Item Type" name="item_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Raw Material" sequence="1" value="raw_material"/>
+                <element inactive_on_update="false" label="Finished Product" sequence="3" value="finished_product"/>
+                <element inactive_on_update="false" label="Packaging Material" sequence="2" value="packaging_material"/>
+            </choice>
+        </element>
+        <element label="Last Transaction" name="last_txn_date" read_only="true" read_only_option="instance_configured" type="glide_date_time"/>
+        <element label="Raw Material" name="raw_material" reference="x_2298436_snackf_0_raw_material" type="reference"/>
+        <element label="Product" name="product" reference="x_2298436_snackf_0_product" type="reference"/>
+        <element display="true" label="Item" max_length="100" name="item_name" read_only="true" read_only_option="instance_configured" type="string"/>
+        <element label="Unit" max_length="40" name="unit" read_only="true" read_only_option="instance_configured" type="string"/>
+        <element label="Packaging Material" name="packaging_material" reference="x_2298436_snackf_0_packaging_material" type="reference"/>
+        <element label="Reorder Level" name="reorder_level" read_only="true" read_only_option="instance_configured" type="decimal"/>
+        <element label="Below Reorder Level" name="below_reorder" read_only="true" read_only_option="instance_configured" type="boolean"/>
+        <element default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <index name="index">
+            <element name="item_type"/>
+        </index>
+        <index name="index2">
+            <element name="packaging_material"/>
+        </index>
+        <index name="index3">
+            <element name="product"/>
+        </index>
+        <index name="index4">
+            <element name="raw_material"/>
+        </index>
+    </element>
+</database>

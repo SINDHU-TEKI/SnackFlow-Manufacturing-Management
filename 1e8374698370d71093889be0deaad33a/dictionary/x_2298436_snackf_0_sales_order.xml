@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="a1a0ed2d83b4d71093889be0deaad3e9" label="Sales Order" max_length="40" name="x_2298436_snackf_0_sales_order" type="collection">
+        <element label="Customer State" max_length="40" name="customer_state" type="string"/>
+        <element label="Remarks" max_length="1000" name="remarks" type="string"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Total Amount" max_length="38" name="total_amount" type="decimal"/>
+        <element display="true" label="Customer" max_length="32" name="customer" reference="x_2298436_snackf_0_customer" type="reference"/>
+        <element label="Order Date" max_length="40" name="order_date" type="glide_date_time"/>
+        <element label="Required Delivery Date" max_length="40" name="required_delivery_date" type="glide_date"/>
+        <element choice="3" label="Status" max_length="40" name="status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Cancelled" sequence="4" value="cancelled"/>
+                <element inactive_on_update="false" label="Partially Dispatched" sequence="2" value="partially_dispatched"/>
+                <element inactive_on_update="false" label="Confirmed" sequence="1" value="confirmed"/>
+                <element inactive_on_update="false" label="Draft" sequence="0" value="draft"/>
+                <element inactive_on_update="false" label="Dispatched" sequence="3" value="dispatched"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="customer"/>
+        </index>
+    </element>
+</database>

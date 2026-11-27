@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_index">
+    <sys_index action="INSERT_OR_UPDATE">
+        <access_method/>
+        <col_name_string>item_type</col_name_string>
+        <index_col_name element="item_type" name="x_2298436_snackf_0_stock_bal">0e0f103bbc6d43e4b4430a65693eed9f</index_col_name>
+        <logical_table_name>x_2298436_snackf_0_stock_bal</logical_table_name>
+        <sys_class_name>sys_index</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 07:33:28</sys_created_on>
+        <sys_id>a447951ac5fb48f7a73ea62bf1c1c335</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_2298436_snackf_0_stock_bal</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_index_x_2298436_snackf_0_stock_bal_item_type</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 07:33:28</sys_updated_on>
+        <table/>
+        <unique_index>false</unique_index>
+    </sys_index>
+</record_update>

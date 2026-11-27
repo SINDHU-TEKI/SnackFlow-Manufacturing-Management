@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="8222612183f4d71093889be0deaad34a" label="Sales Order Detail" max_length="40" name="x_2298436_snackf_0_sales_order_detail" type="collection">
+        <element label="Unit Price" max_length="38" name="unit_price" type="decimal"/>
+        <element display="true" label="Sales Order" max_length="32" name="sales_order" reference="x_2298436_snackf_0_sales_order" type="reference"/>
+        <element label="Product" max_length="32" name="product" reference="x_2298436_snackf_0_product" type="reference"/>
+        <element label="Dispatched Quantity" max_length="38" name="dispatched_quantity" type="decimal"/>
+        <element label="Pending Quantity" max_length="38" name="pending_quantity" type="decimal"/>
+        <element label="Ordered Quantity" max_length="38" name="ordered_quantity" type="decimal"/>
+        <element label="Line Amount" max_length="38" name="line_amount" type="decimal"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <index name="index">
+            <element name="product"/>
+        </index>
+        <index name="index2">
+            <element name="sales_order"/>
+        </index>
+    </element>
+</database>

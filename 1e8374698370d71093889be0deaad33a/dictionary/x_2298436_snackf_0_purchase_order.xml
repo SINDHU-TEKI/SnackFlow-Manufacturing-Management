@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="1d0ec1698334d71093889be0deaad37d" label="Purchase Order" max_length="40" name="x_2298436_snackf_0_purchase_order" type="collection">
+        <element label="Expected Delivery Date" max_length="40" name="expected_delivery_date" type="glide_date"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Supplier Invoice Number" max_length="40" name="supplier_invoice_number" type="string"/>
+        <element label="Total Amount" max_length="38" name="total_amount" type="decimal"/>
+        <element label="Remarks" max_length="1000" name="remarks" type="string"/>
+        <element label="Purchase Date" max_length="40" name="purchase_date" type="glide_date"/>
+        <element display="true" label="Supplier Name" max_length="40" name="supplier_name" type="string"/>
+        <element choice="3" label="Status" max_length="40" name="status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Received" sequence="2" value="received"/>
+                <element inactive_on_update="false" label="Cancelled" sequence="3" value="cancelled"/>
+                <element inactive_on_update="false" label="Submitted" sequence="1" value="submitted"/>
+                <element inactive_on_update="false" label="Draft" sequence="0" value="draft"/>
+            </choice>
+        </element>
+    </element>
+</database>

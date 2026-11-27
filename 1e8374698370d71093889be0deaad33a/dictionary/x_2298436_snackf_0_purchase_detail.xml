@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="e410916d8334d71093889be0deaad31e" label="Purchase Detail" max_length="40" name="x_2298436_snackf_0_purchase_detail" type="collection">
+        <element label="Purchase Order" max_length="32" name="purchase_order" reference="x_2298436_snackf_0_purchase_order" type="reference"/>
+        <element label="Raw Material" max_length="32" name="raw_material" reference="x_2298436_snackf_0_raw_material" type="reference"/>
+        <element label="Quantity" max_length="38" name="quantity" type="decimal"/>
+        <element choice="3" label="Item Type" max_length="40" name="item_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Raw Material" sequence="0" value="raw_material"/>
+                <element inactive_on_update="false" label="Packaging Material" sequence="1" value="packaging_material"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Packaging Material" max_length="32" name="packaging_material" reference="x_2298436_snackf_0_packaging_material" type="reference"/>
+        <element label="Unit Price" max_length="38" name="unit_price" type="decimal"/>
+        <element label="Unit" max_length="40" name="unit" type="string"/>
+        <element label="Line Amount" max_length="38" name="line_amount" type="decimal"/>
+        <index name="index">
+            <element name="packaging_material"/>
+        </index>
+        <index name="index2">
+            <element name="purchase_order"/>
+        </index>
+        <index name="index3">
+            <element name="raw_material"/>
+        </index>
+    </element>
+</database>

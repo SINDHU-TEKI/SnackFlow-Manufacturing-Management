@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="378c592583b4d71093889be0deaad3be" label="Material Consumption" max_length="40" name="x_2298436_snackf_0_material_consumption" type="collection">
+        <element label="Unit" max_length="40" name="unit" type="string"/>
+        <element display="true" label="Production Order" max_length="32" name="production_order" reference="x_2298436_snackf_0_production_order" type="reference"/>
+        <element label="Wastage Quantity" name="wastage_quantity" type="decimal"/>
+        <element label="Unaccounted Quantity" name="unaccounted_quantity" read_only="true" read_only_option="instance_configured" type="decimal"/>
+        <element label="Packaging Material" max_length="32" name="packaging_material" reference="x_2298436_snackf_0_packaging_material" type="reference"/>
+        <element label="Planned Quantity" max_length="38" name="planned_quantity" type="decimal"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Actual Quantity" max_length="38" name="actual_quantity" type="decimal"/>
+        <element label="Raw Material" max_length="32" name="raw_material" reference="x_2298436_snackf_0_raw_material" type="reference"/>
+        <element label="Remarks" max_length="1000" name="remarks" type="string"/>
+        <element choice="3" label="Item Type" max_length="40" name="item_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Packaging Material" sequence="1" value="packaging_material"/>
+                <element inactive_on_update="false" label="Raw Material" sequence="0" value="raw_material"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="packaging_material"/>
+        </index>
+        <index name="index2">
+            <element name="production_order"/>
+        </index>
+        <index name="index3">
+            <element name="raw_material"/>
+        </index>
+    </element>
+</database>

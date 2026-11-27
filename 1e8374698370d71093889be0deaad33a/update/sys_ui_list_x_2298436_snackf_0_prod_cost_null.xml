@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="x_2298436_snackf_0_prod_cost" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>number</element>
+            <list_id display_value="x_2298436_snackf_0_prod_cost" element="NULL" name="x_2298436_snackf_0_prod_cost" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4e8b71b583f45b1093889be0deaad335</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_id>428b71b583f45b1093889be0deaad339</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>cost_per_packet</element>
+            <list_id display_value="x_2298436_snackf_0_prod_cost" element="NULL" name="x_2298436_snackf_0_prod_cost" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4e8b71b583f45b1093889be0deaad335</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_id>428b71b583f45b1093889be0deaad33a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>good_quantity</element>
+            <list_id display_value="x_2298436_snackf_0_prod_cost" element="NULL" name="x_2298436_snackf_0_prod_cost" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4e8b71b583f45b1093889be0deaad335</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_id>c68b71b583f45b1093889be0deaad33a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>labour_cost</element>
+            <list_id display_value="x_2298436_snackf_0_prod_cost" element="NULL" name="x_2298436_snackf_0_prod_cost" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4e8b71b583f45b1093889be0deaad335</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_id>4e8b71b583f45b1093889be0deaad33a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>material_cost</element>
+            <list_id display_value="x_2298436_snackf_0_prod_cost" element="NULL" name="x_2298436_snackf_0_prod_cost" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4e8b71b583f45b1093889be0deaad335</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_id>c28b71b583f45b1093889be0deaad33b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>overhead_cost</element>
+            <list_id display_value="x_2298436_snackf_0_prod_cost" element="NULL" name="x_2298436_snackf_0_prod_cost" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4e8b71b583f45b1093889be0deaad335</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_id>4a8b71b583f45b1093889be0deaad33b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>packaging_cost</element>
+            <list_id display_value="x_2298436_snackf_0_prod_cost" element="NULL" name="x_2298436_snackf_0_prod_cost" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4e8b71b583f45b1093889be0deaad335</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_id>ce8b71b583f45b1093889be0deaad33b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>packaging_cost_complete</element>
+            <list_id display_value="x_2298436_snackf_0_prod_cost" element="NULL" name="x_2298436_snackf_0_prod_cost" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4e8b71b583f45b1093889be0deaad335</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>7</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_id>468b71b583f45b1093889be0deaad33c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>production_order</element>
+            <list_id display_value="x_2298436_snackf_0_prod_cost" element="NULL" name="x_2298436_snackf_0_prod_cost" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4e8b71b583f45b1093889be0deaad335</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>8</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_id>ca8b71b583f45b1093889be0deaad33c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>remarks</element>
+            <list_id display_value="x_2298436_snackf_0_prod_cost" element="NULL" name="x_2298436_snackf_0_prod_cost" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">4e8b71b583f45b1093889be0deaad335</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>9</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_id>428b71b583f45b1093889be0deaad33d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_2298436_snackf_0_prod_cost</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-11-27 11:39:38</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4e8b71b583f45b1093889be0deaad335</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_2298436_snackf_0_prod_cost</sys_name>
+            <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+            <sys_update_name>sys_ui_list_x_2298436_snackf_0_prod_cost_null</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-11-27 11:39:38</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

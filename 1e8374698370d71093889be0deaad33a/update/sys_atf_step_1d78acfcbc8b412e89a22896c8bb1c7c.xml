@@ -23,7 +23,7 @@
         <sys_updated_by>admin</sys_updated_by>
         <sys_updated_on>2026-11-27 10:09:43</sys_updated_on>
         <table>x_2298436_snackf_0_invoice</table>
-        <test display_value="">b5fa2d6f0fca4b539b76872b5d127780</test>
+        <test display_value="SnackFlow: GST calculation (intrastate CGST/SGST and interstate IGST)">b5fa2d6f0fca4b539b76872b5d127780</test>
         <timeout/>
         <warning_message/>
     </sys_atf_step>
@@ -34,11 +34,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:43</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:43</sys_created_on>
         <sys_id>4c6ba416f4b64c5ea011428be672fb7f</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:43</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:43</sys_updated_on>
         <value>1</value>
         <variable display_value="Enforce security">e6e3c7535320220002c6435723dc3496</variable>
     </sys_variable_value>
@@ -48,11 +48,11 @@
         <order>200</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:43</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:43</sys_created_on>
         <sys_id>68adc455234049c9acd0a05866d3ca34</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:43</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:43</sys_updated_on>
         <value>x_2298436_snackf_0_invoice</value>
         <variable display_value="Table">90144b535320220002c6435723dc3488</variable>
     </sys_variable_value>
@@ -62,11 +62,11 @@
         <order>400</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:43</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:43</sys_created_on>
         <sys_id>b1c29b489f504917910064c0fa19141b</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:43</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:43</sys_updated_on>
         <value>sales_order=9442547d83781b1093889be0deaad3ca^customer=ef17e96983f4d71093889be0deaad32b^invoice_date=2026-11-27^invoice_status=issued^taxable_amount=10000^EQ</value>
         <variable display_value="Field values">dd54cf535320220002c6435723dc34fd</variable>
     </sys_variable_value>
@@ -76,11 +76,11 @@
         <order>100</order>
         <sys_class_name>sys_variable_value</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 10:09:43</sys_created_on>
+        <sys_created_on>2026-11-27 11:10:43</sys_created_on>
         <sys_id>f548586d9da04c51b12f03e8de5e42bb</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 10:09:43</sys_updated_on>
+        <sys_updated_on>2026-11-27 11:10:43</sys_updated_on>
         <value>record_successfully_inserted</value>
         <variable display_value="Assert type">9024a37f671003007ba405225685efe5</variable>
     </sys_variable_value>

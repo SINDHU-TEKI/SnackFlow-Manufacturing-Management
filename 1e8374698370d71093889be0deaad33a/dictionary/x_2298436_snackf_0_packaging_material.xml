@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" audit="true" db_object_id="1fec70e983b0d71093889be0deaad37f" label="Packaging Material" max_length="40" name="x_2298436_snackf_0_packaging_material" type="collection">
+        <element label="Reorder Level" max_length="38" name="reorder_level" type="decimal"/>
+        <element choice="3" label="Unit" max_length="40" name="unit" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Carton" sequence="2" value="carton"/>
+                <element inactive_on_update="false" label="Bundle" sequence="1" value="bundle"/>
+                <element inactive_on_update="false" label="Piece" sequence="0" value="piece"/>
+            </choice>
+        </element>
+        <element label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="Opening Stock" name="opening_stock" type="decimal"/>
+        <element attributes="edge_encryption_enabled=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Unit Cost" name="unit_cost" type="decimal"/>
+        <element display="true" label="Packaging Name" max_length="40" name="packaging_name" type="string"/>
+        <element label="Packaging Code" max_length="40" name="packaging_code" type="string"/>
+    </element>
+</database>
