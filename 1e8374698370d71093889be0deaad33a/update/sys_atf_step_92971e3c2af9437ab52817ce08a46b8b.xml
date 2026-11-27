@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description/>
+        <display_name>Record Insert</display_name>
+        <inputs/>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>7</order>
+        <step_config display_value="Record Insert">14872288df60220062fe6c7a4df26319</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>92971e3c2af9437ab52817ce08a46b8b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Insert</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_step_92971e3c2af9437ab52817ce08a46b8b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <table>x_2298436_snackf_0_stock_transaction</table>
+        <test display_value="">c4b393dbf7c04e2ba12bc45bc81163fc</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=92971e3c2af9437ab52817ce08a46b8b"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>92971e3c2af9437ab52817ce08a46b8b</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>30211f14f5694ad0831fc03ecfc792ee</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <value>record_not_inserted</value>
+        <variable display_value="Assert type">9024a37f671003007ba405225685efe5</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>92971e3c2af9437ab52817ce08a46b8b</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>385f567cbd7f4f2f98608e1867cf5712</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <value>x_2298436_snackf_0_stock_transaction</value>
+        <variable display_value="Table">90144b535320220002c6435723dc3488</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>92971e3c2af9437ab52817ce08a46b8b</document_key>
+        <order>400</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>d6f8b338a14c466f95b76c36fe63ff25</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <value>item_type=finished_product^product={{step['c794da2ea5a641529d7bf7bce9844411'].record_id}}^transaction_type=dispatch^quantity=1000^transaction_date=2026-11-27 10:15:00^remarks=ATF test: must be rejected by negative stock guard^EQ</value>
+        <variable display_value="Field values">dd54cf535320220002c6435723dc34fd</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>92971e3c2af9437ab52817ce08a46b8b</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>eb6987a6dc6d485dbe0f25fb04a736af</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <value>1</value>
+        <variable display_value="Enforce security">e6e3c7535320220002c6435723dc3496</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="id=92971e3c2af9437ab52817ce08a46b8b"/>
+    <sys_element_mapping action="INSERT_OR_UPDATE">
+        <field>field_values</field>
+        <id>92971e3c2af9437ab52817ce08a46b8b</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>9f5865ef16e549c4b44aadd9c6d74624</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <table>var__m_atf_input_variable_14872288df60220062fe6c7a4df26319</table>
+        <value>item_type=finished_product^product={{step['c794da2ea5a641529d7bf7bce9844411'].record_id}}^transaction_type=dispatch^quantity=1000^transaction_date=2026-11-27 10:15:00^remarks=ATF test: must be rejected by negative stock guard^EQ</value>
+    </sys_element_mapping>
+</record_update>

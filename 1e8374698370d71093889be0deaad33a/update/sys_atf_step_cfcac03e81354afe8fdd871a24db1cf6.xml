@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description/>
+        <display_name>Record Insert</display_name>
+        <inputs/>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>6</order>
+        <step_config display_value="Record Insert">14872288df60220062fe6c7a4df26319</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_id>cfcac03e81354afe8fdd871a24db1cf6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Insert</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_step_cfcac03e81354afe8fdd871a24db1cf6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <table>x_2298436_snackf_0_output_quality_record</table>
+        <test display_value="">39ad052e4d404c26aff3a4d67c849897</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=cfcac03e81354afe8fdd871a24db1cf6"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>cfcac03e81354afe8fdd871a24db1cf6</document_key>
+        <order>400</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_id>986e78ced26e4f5ca1dd31bb375f5b1a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <value>production_order={{step['a3f959fa54d44f1bb9df2327ee4eb3bb'].record_id}}^product=d3a7a9a983f4d71093889be0deaad3f8^planned_quantity=100^good_quantity=95^damaged_quantity=0^production_date=2026-11-27 12:30:00^remarks=ATF test output^EQ</value>
+        <variable display_value="Field values">dd54cf535320220002c6435723dc34fd</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>cfcac03e81354afe8fdd871a24db1cf6</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_id>b1e7de32e576421a98658777efe6162d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <value>record_successfully_inserted</value>
+        <variable display_value="Assert type">9024a37f671003007ba405225685efe5</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>cfcac03e81354afe8fdd871a24db1cf6</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_id>c54a62925fa24b10a0b7aa63cd9ea0c9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <value>x_2298436_snackf_0_output_quality_record</value>
+        <variable display_value="Table">90144b535320220002c6435723dc3488</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>cfcac03e81354afe8fdd871a24db1cf6</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_id>e1799d9f9975422580c54192cd5186d9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <value>1</value>
+        <variable display_value="Enforce security">e6e3c7535320220002c6435723dc3496</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="id=cfcac03e81354afe8fdd871a24db1cf6"/>
+    <sys_element_mapping action="INSERT_OR_UPDATE">
+        <field>field_values</field>
+        <id>cfcac03e81354afe8fdd871a24db1cf6</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:46</sys_created_on>
+        <sys_id>028cf635014347018ceea60e58d9bf13</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:46</sys_updated_on>
+        <table>var__m_atf_input_variable_14872288df60220062fe6c7a4df26319</table>
+        <value>production_order={{step['a3f959fa54d44f1bb9df2327ee4eb3bb'].record_id}}^product=d3a7a9a983f4d71093889be0deaad3f8^planned_quantity=100^good_quantity=95^damaged_quantity=0^production_date=2026-11-27 12:30:00^remarks=ATF test output^EQ</value>
+    </sys_element_mapping>
+</record_update>

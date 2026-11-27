@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_atf_step">
+    <sys_atf_step action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <callable_outputs/>
+        <copied_from/>
+        <description/>
+        <display_name>Record Insert</display_name>
+        <inputs/>
+        <inputs/>
+        <mugshots_cache_json/>
+        <notes/>
+        <order>5</order>
+        <step_config display_value="Record Insert">14872288df60220062fe6c7a4df26319</step_config>
+        <sys_class_name>sys_atf_step</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>9107669d4ac34202914ee59b0089f2d2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Record Insert</sys_name>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_atf_step_9107669d4ac34202914ee59b0089f2d2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <table>x_2298436_snackf_0_material_consumption</table>
+        <test display_value="">39ad052e4d404c26aff3a4d67c849897</test>
+        <timeout/>
+        <warning_message/>
+    </sys_atf_step>
+    <sys_variable_value action="delete_multiple" query="document_key=9107669d4ac34202914ee59b0089f2d2"/>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>9107669d4ac34202914ee59b0089f2d2</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>0e811bcbcc6341baa6e115dbde5fffce</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <value>1</value>
+        <variable display_value="Enforce security">e6e3c7535320220002c6435723dc3496</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>9107669d4ac34202914ee59b0089f2d2</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>9fea37b9d3cd49a6a0a08bba193bb8ce</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <value>record_successfully_inserted</value>
+        <variable display_value="Assert type">9024a37f671003007ba405225685efe5</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>9107669d4ac34202914ee59b0089f2d2</document_key>
+        <order>400</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>a6905e02a3a24e58b54575e1ba95df71</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <value>production_order={{step['a3f959fa54d44f1bb9df2327ee4eb3bb'].record_id}}^item_type=packaging_material^packaging_material=b1e82d2d83f4d71093889be0deaad3c4^planned_quantity=100^actual_quantity=100^unit=piece^remarks=ATF test: pouch consumption, unit cost unknown^EQ</value>
+        <variable display_value="Field values">dd54cf535320220002c6435723dc34fd</variable>
+    </sys_variable_value>
+    <sys_variable_value action="INSERT_OR_UPDATE">
+        <document>sys_atf_step</document>
+        <document_key>9107669d4ac34202914ee59b0089f2d2</document_key>
+        <order>200</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>d253c21f34e3407181d59ec1b54c52dd</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <value>x_2298436_snackf_0_material_consumption</value>
+        <variable display_value="Table">90144b535320220002c6435723dc3488</variable>
+    </sys_variable_value>
+    <sys_element_mapping action="delete_multiple" query="id=9107669d4ac34202914ee59b0089f2d2"/>
+    <sys_element_mapping action="INSERT_OR_UPDATE">
+        <field>field_values</field>
+        <id>9107669d4ac34202914ee59b0089f2d2</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 10:09:45</sys_created_on>
+        <sys_id>705a45ac9b6e4612b95c3154adb60166</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 10:09:45</sys_updated_on>
+        <table>var__m_atf_input_variable_14872288df60220062fe6c7a4df26319</table>
+        <value>production_order={{step['a3f959fa54d44f1bb9df2327ee4eb3bb'].record_id}}^item_type=packaging_material^packaging_material=b1e82d2d83f4d71093889be0deaad3c4^planned_quantity=100^actual_quantity=100^unit=piece^remarks=ATF test: pouch consumption, unit cost unknown^EQ</value>
+    </sys_element_mapping>
+</record_update>
