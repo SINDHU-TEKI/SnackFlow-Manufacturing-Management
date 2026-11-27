@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard_widget">
+    <par_dashboard_widget action="INSERT_OR_UPDATE">
+        <canvas display_value="">6d120ef4109d43b2a68d6093287d478e</canvas>
+        <component display_value="Single score">d24d53f60350de7a652caf3188a46ed2</component>
+        <component_props>{"headerTitle":"IGST","showZero":true,"showHeader":true,"showBorder":true,"dataSources":[{"sourceType":"table","tableOrViewName":"x_2298436_snackf_0_invoice","filterQuery":"","id":"ds_igst"}],"metrics":[{"dataSource":"ds_igst","id":"metric_igst","aggregateFunction":"SUM","aggregateField":"igst_amount","axisId":"primary","numberFormat":{"customFormat":false}}]}</component_props>
+        <h>7</h>
+        <name/>
+        <required_translations/>
+        <stored_component/>
+        <sys_class_name>par_dashboard_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 09:49:33</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>6af85b8799f04167b9b30ac14bb7f32a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>par_dashboard_widget_6af85b8799f04167b9b30ac14bb7f32a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 09:49:33</sys_updated_on>
+        <visualization/>
+        <w>16</w>
+        <widget_props/>
+        <x>32</x>
+        <y>10</y>
+    </par_dashboard_widget>
+</record_update>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_2298436_snackf_0_sales_order_detail</collection>
+        <condition/>
+        <description>Rejects a sales order line save when the incremental dispatched_quantity delta exceeds the finished-goods ledger balance. Order 160 so it runs after Validate Dispatch Quantity (100, dispatched must not exceed ordered) and after SnackFlow Sales Line Calc (150). Because this is a BEFORE rule it aborts the line save itself, so neither the line nor the stock ledger is written. This replaces the previous behaviour where the line saved successfully and only the ledger insert was refused by SnackFlow Stock Negative Check, leaving the sales line and the stock ledger inconsistent with the discrepancy reported only through gs.error.</description>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>SnackFlow Dispatch Stock Guard</name>
+        <order>160</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous) {
+    var calc = new x_2298436_snackf_0.SnackFlowCalc()
+
+    // DELTA ONLY, same arithmetic as SnackFlow Dispatch Stock Posting. 'dispatched_quantity'
+    // is a running total on the line, so only the increment since the previous save will be
+    // posted to the ledger, and only that increment needs to be covered by finished stock.
+    var nowQty = calc.toNum(current.getValue('dispatched_quantity'))
+    // On insert there is no 'previous' record, so the baseline is 0.
+    var prevQty = previous ? calc.toNum(previous.getValue('dispatched_quantity')) : 0
+    var delta = calc.round2(nowQty - prevQty)
+
+    if (delta <= 0) {
+        // Nothing newly dispatched. A downward correction posts nothing to the ledger, so
+        // there is nothing to guard against here.
+        return
+    }
+
+    var productId = current.getValue('product')
+    if (!productId) {
+        // No item to move; the posting rule will also no-op.
+        return
+    }
+
+    // Current finished-goods balance from the ledger. No row is excluded because a sales
+    // order line is not itself a ledger row.
+    var available = calc.ledgerBalance('finished_product', productId, null)
+
+    // Epsilon guards against decimal float noise on exactly-sufficient stock.
+    if (available + 0.000001 < delta) {
+        var productName = productId
+        var prod = new GlideRecord('x_2298436_snackf_0_product')
+        if (prod.get(productId)) {
+            productName = prod.getValue('product_name') || productId
+        }
+        gs.addErrorMessage(
+            'Cannot dispatch ' +
+                delta +
+                ' more packet(s) of ' +
+                productName +
+                ': only ' +
+                available +
+                ' in finished stock. Record a production receipt or a stock adjustment first, then re-enter the dispatch.',
+        )
+        // BEFORE rule, so aborting here rejects the sales line save itself. Nothing is
+        // written to either the line or the ledger, which is the whole point: previously
+        // the line saved and only the ledger posting was refused, leaving the two
+        // inconsistent with the discrepancy visible only in the system log.
+        current.setAbortAction(true)
+    }
+})(current, previous)
+]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 09:49:39</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>0689a5e683ff455684c85a456c3db967</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SnackFlow Dispatch Stock Guard</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>sys_script_0689a5e683ff455684c85a456c3db967</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 09:49:39</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=0689a5e683ff455684c85a456c3db967"/>
+</record_update>

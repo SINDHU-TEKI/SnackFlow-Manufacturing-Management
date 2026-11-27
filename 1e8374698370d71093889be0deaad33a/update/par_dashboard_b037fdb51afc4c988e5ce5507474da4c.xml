@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard">
+    <par_dashboard action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <base_dashboard/>
+        <certified>false</certified>
+        <description>Management view of SnackFlow operations: outstanding receivables, pending dispatch, production cost and cost per packet (both excluding packaging while packaging unit costs are blank), GST components as stored, stock balance by item, production variance by item type, and detail lists for GST, production costing and material consumption variance. All values are aggregated live from the scoped tables.</description>
+        <experience/>
+        <grid>0</grid>
+        <name>SnackFlow Management</name>
+        <ready_to_migrate>Not Applicable</ready_to_migrate>
+        <sys_class_name>par_dashboard</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 09:49:32</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b037fdb51afc4c988e5ce5507474da4c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SnackFlow Management</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>par_dashboard_b037fdb51afc4c988e5ce5507474da4c</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 09:49:32</sys_updated_on>
+        <sys_ux_app_config/>
+        <sys_ux_app_route/>
+        <sys_ux_macroponent/>
+        <sys_ux_screen/>
+        <sys_ux_screen_type/>
+    </par_dashboard>
+</record_update>

@@ -13,7 +13,7 @@
         <client_callable>false</client_callable>
         <collection>x_2298436_snackf_0_sales_order_detail</collection>
         <condition/>
-        <description>Posts a finished_product dispatch stock transaction for the incremental dispatched_quantity delta only. Order 250 so it runs after SnackFlow Sales Line Calc (150) and SnackFlow Sales Order Rollup (100).</description>
+        <description>Posts a finished_product dispatch stock transaction for the incremental dispatched_quantity delta only. Order 250 so it runs after SnackFlow Sales Line Calc (150) and SnackFlow Sales Order Rollup (100). As of Stage 5 an insufficient-stock dispatch can no longer reach this rule: SnackFlow Dispatch Stock Guard (before, 160) aborts the line save first. The null-insert handling in this script is retained as a backstop in case stock is consumed by another transaction between the guard and the post.</description>
         <execute_function>false</execute_function>
         <filter_condition/>
         <is_rest>false</is_rest>

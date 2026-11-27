@@ -5,7 +5,7 @@
         <active>true</active>
         <allow_high_security_roles>false</allow_high_security_roles>
         <annotation/>
-        <attributes>timeFromCreateToActivate=1560000</attributes>
+        <attributes>timeFromCreateToActivate=4834000</attributes>
         <authored_on_release_version/>
         <callable_by_client_api>false</callable_by_client_api>
         <category/>
@@ -23,7 +23,7 @@
         <natlang/>
         <outputs/>
         <pre_compiled>false</pre_compiled>
-        <remote_trigger_id>36e51dfd83705b1093889be0deaad3b5</remote_trigger_id>
+        <remote_trigger_id>0a62edf583f05b1093889be0deaad38c</remote_trigger_id>
         <run_as>user</run_as>
         <run_with_roles/>
         <sc_callable>false</sc_callable>
@@ -37,7 +37,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>ad5bbd00f6d04e72bdceb2bab7eabbb5</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Stock Reorder Level Alert</sys_name>
         <sys_overrides/>
         <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
@@ -45,7 +45,7 @@
         <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
         <sys_update_name>sys_hub_flow_ad5bbd00f6d04e72bdceb2bab7eabbb5</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 08:55:17</sys_updated_on>
+        <sys_updated_on>2026-11-27 09:49:51</sys_updated_on>
         <type>flow</type>
         <updation_source/>
         <version>2</version>
@@ -69,15 +69,15 @@
         <run_when_user_setting>any</run_when_user_setting>
         <sys_class_name>sys_flow_record_trigger</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 08:55:17</sys_created_on>
+        <sys_created_on>2026-11-27 09:49:51</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>36e51dfd83705b1093889be0deaad3b5</sys_id>
+        <sys_id>0a62edf583f05b1093889be0deaad38c</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_overrides/>
         <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 08:55:17</sys_updated_on>
+        <sys_updated_on>2026-11-27 09:49:51</sys_updated_on>
         <table>x_2298436_snackf_0_stock_bal</table>
         <trigger_definition/>
     </sys_flow_record_trigger>
@@ -88,14 +88,14 @@
         <identifier_type>flow</identifier_type>
         <runner>FDTriggerRunner</runner>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-11-27 08:55:17</sys_created_on>
-        <sys_id>32e51dfd83705b1093889be0deaad3b6</sys_id>
+        <sys_created_on>2026-11-27 09:49:51</sys_created_on>
+        <sys_id>0662edf583f05b1093889be0deaad38d</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 08:55:17</sys_updated_on>
-        <trigger display_value="">36e51dfd83705b1093889be0deaad3b5</trigger>
+        <sys_updated_on>2026-11-27 09:49:51</sys_updated_on>
+        <trigger display_value="">0a62edf583f05b1093889be0deaad38c</trigger>
     </sys_trigger_runner_mapping>
-    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=ad5bbd00f6d04e72bdceb2bab7eabbb5^sys_idNOT IN32e51dfd83705b1093889be0deaad3b6"/>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=ad5bbd00f6d04e72bdceb2bab7eabbb5^sys_idNOT IN0662edf583f05b1093889be0deaad38d"/>
     <sys_hub_flow_stage action="delete_multiple" query="flow=ad5bbd00f6d04e72bdceb2bab7eabbb5"/>
     <sys_flow_cat_variable_model action="delete_multiple" query="id=ad5bbd00f6d04e72bdceb2bab7eabbb5"/>
     <sys_hub_flow_input action="delete_multiple" query="model=ad5bbd00f6d04e72bdceb2bab7eabbb5^sys_idNOT IN27ff0df183705b1093889be0deaad3d0,67ff0df183705b1093889be0deaad3e2,a7ff0df183705b1093889be0deaad3fa"/>
@@ -368,10 +368,10 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-27 08:29:16</sys_created_on>
         <sys_id>56c3f5975e0e4e39b5a4464d466cf4b7</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 08:55:16</sys_updated_on>
+        <sys_updated_on>2026-11-27 09:49:50</sys_updated_on>
         <trigger_definition display_value="Updated">bb695e60c31322002841b63b12d3aea5</trigger_definition>
         <trigger_inputs>H4sIAAAAAAAA/+1YbW/TMBD+K1E+gVSk8iIE+8bbpEm8SGzAh4Ei1760Fq5d7Eu7MO2/c06c1ktSCLAwEPvU5uz4nrt7nrOd0/MUrZzPwR5ph0xzOC7dkUgP0nSSKjYDRX9P2EwBPUuNYDVTJ+UKyIzenGm29GMCVqAFaKxf5QsjObyUjp5PP03SJdOCobFleoC2gEmaW7M8geVKMaS1cqYcGY0VYNODu9PpJK3WDU5owTVThX8+y+7de/zowf2HmdOMf86zaebQ8M/ZjCkPQzpasnw/bDZfSCUs6BrjilnyiR7BeSf2FhzsSUFAT9jhDH0yxDawKPxgscDEG63KaMqZk1+her9wkEUJDTPy44XZvIUcCDGHQ6krd2FQGU4hNU8MqaqzAsFRLBcX27wcSlChuI5bucInHOW6KcDFZAgb3hY6+bAAnbxzYJOqxB1qzJUUkKl6bDg1mkB/xI2KDBG0UBxb6GxDyDLKn228N8TpkmMYAXrD/Z5D7EnB30qNlIm1L7PPo9dlOhZXjsE5afwvotTzLmNqVvyALecUKHwpfIxVMvKmlNVirMZH5pfBvc9i4jHkxtb1O9pNbDD5F46WbB4oQR4UcIwqlNOb0dMrSa9RCLs87AGljc6GAHtt9J0/iWtmcBGDaXA8JfulBBEz94Fzv4nu13Tflp3bsml9ObaW0oP1Z9TeJex+59ii8P+s9lyZDZHoqgXOdNmhrPckNbG0TLghZ2c4mmRIHjC3ptBiH4rLM8bRLZ1gvg9iNyO5JSBnhcLb1y1Uj43aYKzROI62UuOxgXrdUa7X7Y06d6l6o5MXIeikOtm6qxZqhbxFT2qjvLCUDqy2lCbtCTYIRhKtH+9ioZ03AtQc6K9VI3RQ2HJxp5MGf0sijXmgOnpLvtf3jVjqzD0zWkisT2FtfTRDbpS7TSgNjwBsGyf4pmahmv6xmE7viyC3dhfdO3EAaeLQe8BgTxZGY0n4VvCrJNkwjS5DkzEhsgjxtk0tjQD1PKphYAbtHKsCXXoRVZiUsv0AMOaNeqQrUt8Jig79/vTkb6+jdWGjITN57+VH5klIDvWmWZngAgiTIu7SyhWq8TYHbXxB29Cem4QGEvtHwF3NHaj69NC9CNXlbvWF2vjTHz3234Fazm92j136TupZVy3jQksyZ3zB9Lw+OzXcPSQ1A+OLpJ6S1FNG1DVvfdLg4zmDNdiyE6w3JsVKeKmM5ZmpDStdp31Rd/CNIpwiyUCS0LUIrq0lNHuXQ0sz52XUDTqsaTWGzvjAHrEj+X4M/0pTGN4DPn0DFdl/sTYZAAA=</trigger_inputs>
         <trigger_outputs/>
@@ -394,10 +394,10 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-11-27 08:29:16</sys_created_on>
         <sys_id>bb69b13d216c46f191ea3bd7947e4563</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 08:55:16</sys_updated_on>
+        <sys_updated_on>2026-11-27 09:49:50</sys_updated_on>
         <ui_id>7c1f4a92-3b6d-4e58-9a21-5f8c2d0b47e3</ui_id>
         <updation_source/>
         <values>H4sIAAAAAAAA/+2YXW8bKRSG/wqaq1byuuOP2HF61SYbbaS2keq0e9FUIwYYmw0Ds8DEcS3/9z0M2B5/1KkbZZtKufMwwLzn8JwX8JdZJHHOopPI4lSwpHpoRLdYlK7xLmm3B8fdTi8xEpObLIkTYxW5SVIsoBvlphB4+vnHehdYw+yW6ehkFpExF1QzGZ18+dqIOIXhrcFx3EuzLu7HnXYnjo/bg0HaGWTxcX8Qt2gXphA4ZQK6Xjmx8LxLu50WO9ve1ceiD/6F0tTpaTUidmeZpAyEZFgY1ohyLCm2Sk+XLZpheikFNFhdwvOYS+smHDNksR4xizQjMCOyQV6O7wz/BmqOYzc6YxAwceKi2mMSsuibszNs8RDmJ7bUoSsZK06Y8amiLMOlsKf1Nt/hsrBcST/EK/CjlShz+cFnKlpOsFg0aCkNiGCFC98FFKLNhmM1+bhQec5llanwUigCa7p4wtZqnpbW6ZlFTLAcJkpyXBRcjpJCq1teDQYteXMk4KGZCTWBjxo+kk1MnPAmZBs3z6H9rGr+jDV3UbyHaWAwQGISQzQvFrFVH4/mjchMzanAxqxihOQm/5ZOoY84xJb49Lgh1URv4MO3LIQxbyxrAY8TQmplsI36D+BM9+LM4hrOp6crlhffDhgbyKwcbSA8XDQGfLsH4rvsssQzfgb04YBSJnjOKyIi5xCPwuYEwwdyrG8SlmMuapS2tjGtVNyPatzrpWkvPep3VqgOSEb7adbDfdKpoXohiSgpQ38vZKzI3VYWGE6VEgzLTR8Gba/Oqxpegtz+OZCDEXu+kFUIVkRMEUZLSa7Rgk9XyuAXtogbZCDvTXSlEA9R1UY00FSVKC+NhW4W3qxZfLPu7t2nWzwBgNB6tpOO36K6Hsnm04f7fIvu9flerXjebhh9erDTHz07/a9n8X9yegDElOk/jNgaokN3oEYAh5qAFVVUIMFu2Y7j+L6u90F9tB9qUoN6uNS4S/chcPf2w+0P3c9s/5Y+q+i0RvF1GccdUiCn5Q/L5TQnTCtlUwj4pnpJr6Nr3425+5Vn+S0WGJK0uGZBPjAZM+o3d9jP/e4+xgaBBMFkgJ9bg4iSGR/BWtP1Wmh6Ka8K/62DhF1CHqpTxeLap+CowKoW8IYcufAbiJQaltaiNIgHoNclNNwIiTTmxp1AilITCIEh3yVTOpxXYMoNtds1H/T/ssQ9ncTc53B4r8Nl7fq27eHdojl429jmYsPZ/rp6/27la/0Hbtq9o6NO79nZHrxrFxPaploVRYjt0XZuj33N72azTwWoYzRpNQP28/lPnTa7e7EldO1PsurC8nEhZlNcwJcqUlbp5nSD4rPwBl2crWCOH3RFe2OMIhwyYWrXsQm3Y6jvHTerTnsde7in8Yqx3fhfrF4/gTLw55UDqiAbMgwWd86ZcEstyzytuF2vDgJ3aZ1sMBmuck/lTFD78/X7xVLxvOarVt13GVuviHtPsfv/Ucb1YlHbSg45u3aez65PwOEf5V7m1863OfEeD/ixr1t0LTWD9ZFoZJpgw58M0y9eul9/Os978fL1tYzm8/nX/wB+/DxNghkAAA==</values>
@@ -511,7 +511,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>bbff4df183705b1093889be0deaad351</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name/>
         <sys_overrides/>
         <sys_package/>
@@ -519,7 +519,7 @@
         <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
         <sys_update_name/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 08:55:17</sys_updated_on>
+        <sys_updated_on>2026-11-27 09:49:51</sys_updated_on>
         <type>flow</type>
         <version>2</version>
     </sys_hub_flow_snapshot>
@@ -937,12 +937,12 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>08005df183705b1093889be0deaad3bd</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_overrides/>
         <sys_scope/>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-11-27 08:55:17</sys_updated_on>
-        <trigger display_value="">36e51dfd83705b1093889be0deaad3b5</trigger>
+        <sys_updated_on>2026-11-27 09:49:51</sys_updated_on>
+        <trigger display_value="">0a62edf583f05b1093889be0deaad38c</trigger>
     </sys_flow_trigger_plan>
     <sys_flow_subflow_plan action="delete_multiple" query="plan_id=ad5bbd00f6d04e72bdceb2bab7eabbb5"/>
 </record_update>

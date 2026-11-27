@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard_widget">
+    <par_dashboard_widget action="INSERT_OR_UPDATE">
+        <canvas display_value="">6d120ef4109d43b2a68d6093287d478e</canvas>
+        <component display_value="Rich text">2d56f06d55f46bbd4e79b5e624beb940</component>
+        <component_props>{"html":"&lt;p&gt;&lt;b&gt;Known data gaps.&lt;/b&gt; Read the figures above with these caveats:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Packaging unit costs are not recorded.&lt;/b&gt; Packaging material unit costs are blank, so production cost and cost per packet exclude packaging entirely and &lt;code&gt;packaging_cost_complete&lt;/code&gt; is false on the Production Cost records. Both figures are understated by an unknown amount until real packaging unit costs are supplied.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Customer GSTINs are not recorded.&lt;/b&gt; No GSTIN is held against any customer, so invoices cannot be reconciled to a counterparty GST registration.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Customer email addresses are not recorded.&lt;/b&gt; With no email address on file, the sales-order confirmation notification cannot be delivered.&lt;/li&gt;&lt;/ul&gt;"}</component_props>
+        <h>6</h>
+        <name/>
+        <required_translations/>
+        <stored_component/>
+        <sys_class_name>par_dashboard_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-11-27 09:49:33</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>3bf7078cedfa451ea36b683c83613c81</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_overrides/>
+        <sys_package display_value="SnackFlow" source="x_2298436_snackf_0">1e8374698370d71093889be0deaad33a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SnackFlow">1e8374698370d71093889be0deaad33a</sys_scope>
+        <sys_update_name>par_dashboard_widget_3bf7078cedfa451ea36b683c83613c81</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-11-27 09:49:33</sys_updated_on>
+        <visualization/>
+        <w>48</w>
+        <widget_props/>
+        <x>0</x>
+        <y>67</y>
+    </par_dashboard_widget>
+</record_update>
